@@ -7,8 +7,14 @@ exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
   console.log('================ LOGIN API HIT ================');
-  console.log('EMAIL/USERNAME RECEIVED:', email);
-  console.log('PASSWORD EXISTS:', !!password);
+  console.log('[CRM AUTH] Login attempt', {
+    email,
+    crmUrlConfigured: Boolean(process.env.CRM_SUPABASE_URL),
+    crmAnonKeyConfigured: Boolean(process.env.CRM_SUPABASE_ANON_KEY),
+    crmServiceKeyConfigured: Boolean(
+      process.env.CRM_SUPABASE_SERVICE_ROLE_KEY
+    ),
+  });
 
   if (!email || !password) {
     return res.status(400).json({
@@ -18,36 +24,57 @@ exports.login = async (req, res, next) => {
   }
 
   try {
-    console.log('AUTHENTICATING WITH SUPABASE AUTH...');
     const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
       email,
       password
     });
 
+    // Check if error is invalid credentials or auth-related vs unexpected DB error
     if (authError) {
-      console.log('SUPABASE AUTH ERROR:', authError.message);
-      return res.status(401).json({
-        success: false,
-        message: 'Invalid email or password'
-      });
+      if (authError.message.toLowerCase().includes('invalid')) {
+        return res.status(401).json({
+          success: false,
+          message: 'Invalid email or password'
+        });
+      } else {
+        console.error('SUPABASE AUTH UNEXPECTED ERROR:', authError);
+        return res.status(500).json({
+          success: false,
+          message: 'Authentication service error'
+        });
+      }
     }
 
     const { user, session } = authData;
-    console.log('SUPABASE AUTH SUCCESS! User ID:', user.id);
 
-    // Fetch user profile from public.users table using the auth user's ID
+    console.log('[CRM AUTH] Password verification', {
+      email,
+      passwordMatched: true,
+      passwordStorageType: 'supabase-auth'
+    });
+
     const { data: dbUser, error: dbError } = await supabase.supabaseAdmin
       .from('users')
       .select('*')
       .eq('id', user.id)
       .maybeSingle();
 
-    console.log('DB PROFILE RETRIEVAL:', dbUser);
+    console.log('[CRM AUTH] User lookup', {
+      email,
+      userFound: Boolean(dbUser),
+      queryErrorCode: dbError?.code || null,
+      queryErrorMessage: dbError?.message || null,
+    });
+
     if (dbError) {
       console.error('SUPABASE DB ERROR:', dbError.message);
+      return res.status(500).json({
+        success: false,
+        message: 'Internal server error during profile lookup'
+      });
     }
 
-    if (dbError || !dbUser) {
+    if (!dbUser) {
       console.log('LOGIN BLOCKED: User profile not configured for ID:', user.id);
       return res.status(401).json({
         success: false,

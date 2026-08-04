@@ -25,6 +25,18 @@ const supabaseAdmin = supabaseServiceKey
     })
   : supabase;
 
+console.log('[CRM Supabase]', {
+  urlConfigured: Boolean(process.env.CRM_SUPABASE_URL),
+  anonKeyConfigured: Boolean(process.env.CRM_SUPABASE_ANON_KEY),
+  serviceKeyConfigured: Boolean(
+    process.env.CRM_SUPABASE_SERVICE_ROLE_KEY
+  ),
+  projectHost:
+    process.env.CRM_SUPABASE_URL
+      ? new URL(process.env.CRM_SUPABASE_URL).hostname
+      : null,
+});
+
 // Attach supabaseAdmin to the default supabase export for maximum backward compatibility
 supabase.supabaseAdmin = supabaseAdmin;
 
