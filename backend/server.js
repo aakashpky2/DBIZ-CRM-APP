@@ -71,17 +71,95 @@ app.use('/api/gst/gstr1', require('./gst/routes/gstr1'));
 
 app.get('/health', (req, res) => res.json({ status: 'ok', service: 'dbiz-combined-app', timestamp: new Date().toISOString() }));
 
-app.use('/api', (req, res) => res.status(404).json({ success: false, message: 'API endpoint not found' }));
-
-const frontendDist = path.resolve(__dirname, '..', 'frontend', 'dist');
-const frontendIndex = path.join(frontendDist, 'index.html');
-if (fs.existsSync(frontendIndex)) {
-  app.use(express.static(frontendDist));
-  app.use((req, res, next) => {
-    if (req.method !== 'GET' || req.path.startsWith('/api')) return next();
-    res.sendFile(frontendIndex, err => err && next(err));
+app.use('/api', (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'API endpoint not found',
   });
+});
+
+const frontendDistPath = path.resolve(
+  __dirname,
+  '..',
+  'frontend',
+  'dist'
+);
+
+const frontendIndexPath = path.join(
+  frontendDistPath,
+  'index.html'
+);
+
+const frontendAssetsPath = path.join(
+  frontendDistPath,
+  'assets'
+);
+
+console.log('[Frontend] dist path:', frontendDistPath);
+console.log(
+  '[Frontend] index exists:',
+  fs.existsSync(frontendIndexPath)
+);
+console.log(
+  '[Frontend] assets directory exists:',
+  fs.existsSync(frontendAssetsPath)
+);
+
+if (fs.existsSync(frontendAssetsPath)) {
+  console.log(
+    '[Frontend] sample assets:',
+    fs.readdirSync(frontendAssetsPath).slice(0, 20)
+  );
 }
+
+if (fs.existsSync(frontendIndexPath)) {
+  app.use(
+    express.static(frontendDistPath, {
+      index: false,
+      fallthrough: true,
+      maxAge:
+        process.env.NODE_ENV === 'production'
+          ? '1d'
+          : 0,
+    })
+  );
+
+  app.use((req, res, next) => {
+    if (req.method !== 'GET') {
+      return next();
+    }
+
+    if (req.path.startsWith('/api')) {
+      return next();
+    }
+
+    if (req.path.startsWith('/assets/')) {
+      return res.status(404).send('Asset not found');
+    }
+
+    return res.sendFile(frontendIndexPath, error => {
+      if (error) {
+        next(error);
+      }
+    });
+  });
+} else {
+  console.error(
+    `[Frontend] Build missing: ${frontendIndexPath}`
+  );
+}
+
+app.use((error, req, res, next) => {
+  console.error('[SERVER ERROR]', {
+    method: req.method,
+    path: req.path,
+    message: error.message,
+    code: error.code,
+    stack: error.stack,
+  });
+
+  next(error);
+});
 
 const crmErrorHandler = require('./crm/middleware/error');
 app.use(crmErrorHandler);

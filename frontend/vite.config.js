@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+  base: '/',
   // Load the combined project's root .env file.
   envDir: '../',
   plugins: [react(), tailwindcss()],
