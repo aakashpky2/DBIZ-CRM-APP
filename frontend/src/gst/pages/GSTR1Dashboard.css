@@ -1,0 +1,287 @@
+.gstr1-main-content {
+    padding: 0 120px;
+    margin-top: 15px;
+    margin-bottom: 50px;
+    background-color: #f1f3f6;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Banner - Cyan */
+.gstr1-header-banner {
+    background-color: #1eb3a6;
+    /* cyan/teal color matching screenshot */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.gstr1-title {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.gstr1-header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.gstr1-btn-secondary {
+    background-color: #3b5f8f;
+    /* dark blue/purple */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+.gstr1-btn-icon {
+    background-color: #3b5f8f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* Info Details Block */
+.gstr1-info-block {
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.info-column span {
+    font-weight: 600;
+    color: #111;
+}
+
+.info-column p {
+    margin: 0;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mandatory-note {
+    font-size: 13px;
+    color: #111;
+}
+
+/* Checkbox Strip */
+.gstr1-checkbox-strip {
+    background-color: #fff;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Accordions */
+.gstr1-accordion {
+    margin-bottom: 5px;
+}
+
+.accordion-header {
+    background-color: #1b2e4b;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.accordion-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.accordion-icon {
+    font-size: 14px;
+}
+
+.accordion-body {
+    background-color: #e0e6ed;
+    /* light grey/blue background for the grid area */
+    padding: 20px;
+}
+
+/* Record Cards Grid */
+.record-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.record-card {
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.record-card-top {
+    background-color: #2b4b7c;
+    /* distinct blue head */
+    color: white;
+    padding: 15px 10px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.record-card-top h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.record-card-bottom {
+    background-color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.record-status-badge {
+    display: flex;
+    align-items: center;
+}
+
+/* Alert Box */
+.gstr1-bottom-alert {
+    background-color: #e0f2fe;
+    /* light blue */
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    border: 1px solid #bae6fd;
+}
+
+.gstr1-bottom-alert .alert-text {
+    margin: 0;
+    color: #0369a1;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Bottom Actions */
+.gstr1-bottom-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.gstr1-btn-primary {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.gstr1-btn-primary:hover {
+    background-color: #1b2e4b;
+}
+
+.gstr1-btn-outline {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #d1d5db;
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    background-clip: padding-box;
+}
+
+.gstr1-btn-outline:hover {
+    background-color: #f9fafb;
+}
+
+@media (max-width: 1280px) {
+    .record-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .gstr1-main-content {
+        padding: 0 20px;
+    }
+
+    .gstr1-info-block {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .text-right {
+        text-align: left;
+    }
+
+    .record-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gstr1-bottom-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 640px) {
+    .record-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Accordion Animation */
+.accordion-body-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-in-out;
+}
+
+.accordion-body-wrapper.open {
+    grid-template-rows: 1fr;
+}
+
+.accordion-body-inner {
+    overflow: hidden;
+}

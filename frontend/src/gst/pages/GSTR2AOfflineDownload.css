@@ -1,0 +1,167 @@
+.offdown-container {
+    background-color: #f1f3f6;
+    padding: 20px 40px;
+    min-height: calc(100vh - 150px);
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.offdown-breadcrumb {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.offdown-breadcrumb a {
+    color: #167dc2;
+    text-decoration: none;
+}
+
+.offdown-breadcrumb span {
+    color: #4b5563;
+    margin: 0 5px;
+}
+
+.offdown-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: 3px solid #1eb3a6; /* Turquoise top border */
+    border-radius: 4px;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.offdown-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.offdown-title {
+    font-size: 20px;
+    color: #1eb3a6; /* Turquoise title */
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.offdown-refresh-btn {
+    background-color: #fff;
+    color: #167dc2;
+    border: 1px solid #167dc2;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.offdown-refresh-btn:hover {
+    background-color: #f1f5f9;
+}
+
+.offdown-help-section {
+    background-color: #fff8e1;
+    border: 1px solid #ffe082;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    color: #5d4037;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.offdown-help-section p {
+    margin: 0;
+}
+
+.offdown-center-box {
+    border: 1px solid #e2e8f0;
+    padding: 40px;
+    text-align: center;
+    background-color: #f8fafc;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.offdown-center-box h3 {
+    margin-top: 0;
+    color: #2b4b7c;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.offdown-note {
+    color: #e53935; /* Red note text */
+    font-size: 13px;
+    margin-bottom: 30px;
+}
+
+.offdown-buttons-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.offdown-btn-primary {
+    background-color: #2b4b7c;
+    border: 1px solid #2b4b7c;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 13px;
+    transition: all 0.2s;
+    min-width: 250px;
+}
+
+.offdown-btn-primary:hover:not(:disabled) {
+    background-color: #1e365b;
+}
+
+.offdown-btn-primary:disabled {
+    background-color: #94a3b8;
+    border-color: #94a3b8;
+    cursor: not-allowed;
+}
+
+.offdown-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 25px;
+}
+
+.offdown-btn-back {
+    background-color: #fff;
+    border: 1px solid #2b4b7c;
+    color: #2b4b7c;
+    padding: 10px 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.offdown-btn-back:hover {
+    background-color: #f8fafc;
+}
+
+@media (max-width: 768px) {
+    .offdown-buttons-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    .offdown-btn-primary {
+        width: 100%;
+    }
+    .offdown-btn-back {
+        width: 100%;
+    }
+}

@@ -1,0 +1,186 @@
+.no-container {
+    background-color: #f1f3f6;
+    padding: 20px 40px;
+    min-height: calc(100vh - 150px);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.no-breadcrumb {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.no-breadcrumb a {
+    color: #167dc2;
+    text-decoration: none;
+}
+
+.no-breadcrumb span {
+    color: #4b5563;
+    margin: 0 5px;
+}
+
+.no-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.no-card-title {
+    font-size: 16px;
+    color: #2b4b7c;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.no-info-text-right {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: #d32f2f;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.no-filter-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.no-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.no-form-group label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+}
+
+.no-date-inputs {
+    display: flex;
+    gap: 15px;
+}
+
+.no-input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 140px;
+}
+
+.no-input:focus {
+    outline: none;
+    border-color: #1eb3a6;
+}
+
+.no-action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.no-btn {
+    padding: 8px 25px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+.no-btn-primary {
+    background-color: #2b4b7c;
+    color: #fff;
+}
+
+.no-btn-secondary {
+    background-color: #fff;
+    border: 1px solid #2b4b7c;
+    color: #2b4b7c;
+}
+
+.no-btn-secondary:hover {
+    background-color: #f8fafc;
+}
+
+.no-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.no-table th, .no-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.no-table th {
+    background-color: #f8fafc;
+    color: #333;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.no-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.no-th-filter {
+    margin-top: 8px;
+}
+
+.no-th-filter input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.no-view-link {
+    color: #167dc2;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.no-view-link:hover {
+    color: #0056b3;
+}
+
+.no-footer-notes {
+    margin-top: 25px;
+    background-color: #fcfcfc;
+    border: 1px solid #e5e7eb;
+    padding: 15px 20px;
+    border-radius: 4px;
+}
+
+.no-footer-notes ul {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.no-footer-notes li {
+    margin-bottom: 5px;
+}
+
+.no-footer-notes li:last-child {
+    margin-bottom: 0;
+}

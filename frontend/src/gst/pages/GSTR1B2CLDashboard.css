@@ -1,0 +1,120 @@
+/* B2CL Dashboard Specific Styles */
+.b2cl-main-content {
+    margin-top: 15px;
+    padding: 0 120px;
+}
+
+/* Header Banner Variation */
+.b2cl-header-banner {
+    background-color: #1eb3a6;
+    /* cyan/teal */
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.b2cl-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    min-height: 60px;
+}
+
+.b2cl-title {
+    color: white;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Empty records container */
+.b2cl-empty-records {
+    background-color: #edf7ff;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #d6eaf8;
+    color: #2c5e8a;
+    font-size: 14px;
+}
+
+/* Actions below empty records */
+.b2cl-actions-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.b2cl-btn-primary {
+    background-color: #1d4f91;
+    color: white;
+    border: none;
+    height: 42px;
+    min-width: 160px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.b2cl-btn-primary:hover {
+    background-color: #14386a;
+}
+
+.b2cl-btn-outline {
+    background-color: #fff;
+    color: #1d4f91;
+    border: 1px solid #1d4f91;
+    height: 42px;
+    min-width: 160px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.b2cl-btn-outline:hover {
+    background-color: #f1f5f9;
+}
+
+/* Records Table */
+.b2cl-records-table-container {
+    background-color: #fff;
+    margin: 20px 0;
+    overflow-x: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.b2cl-records-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.b2cl-records-table th {
+    background-color: #f3f4f6;
+    color: #374151;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 20px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.b2cl-records-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #111;
+}
+
+.b2cl-records-table tr:hover {
+    background-color: #f9fafb;
+}
+
+@media (max-width: 1024px) {
+    .b2cl-main-content {
+        padding: 0 20px;
+    }
+}

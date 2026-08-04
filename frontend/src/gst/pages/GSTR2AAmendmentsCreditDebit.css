@@ -1,0 +1,233 @@
+.amcdn-container {
+    background-color: #f1f3f6;
+    padding: 20px 40px;
+    min-height: calc(100vh - 150px);
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.amcdn-breadcrumb {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.amcdn-breadcrumb a {
+    color: #167dc2;
+    text-decoration: none;
+}
+
+.amcdn-breadcrumb span {
+    color: #4b5563;
+    margin: 0 5px;
+}
+
+.amcdn-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: 3px solid #1eb3a6; /* Turquoise top border */
+    border-radius: 4px;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.amcdn-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.amcdn-title {
+    font-size: 20px;
+    color: #1eb3a6; /* Turquoise title */
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.amcdn-help-btn {
+    background-color: #f1f5f9;
+    color: #167dc2;
+    border: 1px solid #cbd5e1;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.amcdn-help-btn:hover {
+    background-color: #e2e8f0;
+}
+
+.amcdn-taxpayer-details {
+    background-color: #f8fafc;
+    border: 1px solid #e5e7eb;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+.tp-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 10px;
+}
+
+.tp-row:last-child {
+    margin-bottom: 0;
+}
+
+.tp-item {
+    font-size: 14px;
+    color: #333;
+}
+
+.tp-item strong {
+    color: #555;
+}
+
+.amcdn-alert-info {
+    background-color: #e3f2fd;
+    color: #0c5460;
+    border: 1px solid #bce8f1;
+    padding: 15px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #167dc2;
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    margin-right: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.amcdn-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 30px;
+}
+
+.amcdn-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px;
+}
+
+.amcdn-table th, .amcdn-table td {
+    border: 1px solid #ddd;
+    padding: 12px 10px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.amcdn-table th {
+    background-color: #2b4b7c; /* GST dark blue headers */
+    color: #fff;
+    font-weight: bold;
+}
+
+.amcdn-table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.amcdn-pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.amcdn-pagination button {
+    padding: 5px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.amcdn-pagination button:disabled {
+    background-color: #f1f3f6;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.amcdn-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 25px;
+}
+
+.amcdn-btn-back {
+    background-color: #fff;
+    border: 1px solid #2b4b7c;
+    color: #2b4b7c;
+    padding: 10px 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.amcdn-btn-back:hover {
+    background-color: #f8fafc;
+}
+
+.amcdn-btn-download {
+    background-color: #2b4b7c;
+    border: 1px solid #2b4b7c;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.amcdn-btn-download:hover:not(.disabled) {
+    background-color: #1e365b;
+}
+
+.amcdn-btn-download.disabled {
+    background-color: #a0aec0;
+    border-color: #a0aec0;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .tp-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .amcdn-actions {
+        flex-direction: column;
+    }
+    .amcdn-btn-back, .amcdn-btn-download {
+        width: 100%;
+    }
+    .amcdn-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}

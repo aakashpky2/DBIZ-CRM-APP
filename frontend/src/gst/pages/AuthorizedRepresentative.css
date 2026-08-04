@@ -1,0 +1,84 @@
+/* ── Type of Representative (radio row) ─────────────────── */
+.ar-type-row {
+    margin-bottom: 16px;
+}
+
+.ar-type-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+.ar-type-radios {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.ar-radio-opt {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13.5px;
+    color: #2d3748;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.ar-radio-opt input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #38a169; /* green like the portal */
+}
+
+.ar-radio-opt.selected {
+    color: #276749;
+}
+
+/* ── Enrolment ID + SEARCH row ───────────────────────────── */
+.ar-enrolment-row {
+    margin-bottom: 16px;
+}
+
+.ar-search-row {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+}
+
+.ar-search-row .bd-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    flex: 1;
+}
+
+.ar-search-btn {
+    background: #1a3a6e;
+    color: white;
+    border: 1px solid #1a3a6e;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    padding: 0 18px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.ar-search-btn:hover {
+    background: #2b6cb0;
+}
+
+/* ── Sub label (Name of Person header line) ──────────────── */
+.ar-sub-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #edf2f7;
+}

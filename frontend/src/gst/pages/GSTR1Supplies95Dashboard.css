@@ -1,0 +1,309 @@
+.sup95-main-content {
+    margin: 15px 120px 50px 120px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.sup95-header-banner {
+    background-color: #1eb3a6;
+    padding: 0;
+    border-radius: 4px 4px 0 0;
+}
+
+.sup95-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+}
+
+.sup95-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.sup95-header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.sup95-btn-help {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.sup95-refresh-btn {
+    background-color: #2b4b7c;
+    border: none;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.sup95-tabs {
+    display: flex;
+    padding: 0 10px;
+    overflow-x: auto;
+}
+
+.sup95-tab {
+    padding: 10px 20px;
+    color: #e0f2f1;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    position: relative;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+}
+
+.sup95-tab.active {
+    color: white;
+    background-color: #1a9d92;
+    border-bottom: 3px solid #ffd700;
+}
+
+.sup95-body {
+    padding: 25px 20px;
+}
+
+.sup95-empty-alert {
+    background-color: #e3f2fd;
+    border: 1px solid #bbdefb;
+    padding: 15px 20px;
+    border-radius: 4px;
+    color: #1976d2;
+    font-size: 13.5px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.sup95-footer-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.sup95-btn-back {
+    background-color: white;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 8px 30px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sup95-btn-add {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 8px 30px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sup95-back-nav {
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.sup95-checkbox-row {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border: 1px solid #eee;
+    display: flex;
+    gap: 25px;
+    margin-bottom: 25px;
+    font-size: 13px;
+    color: #333;
+}
+
+.sup95-checkbox-row label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.sup95-form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 30px;
+}
+
+.sup95-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.sup95-form-group label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.sup95-form-group input,
+.sup95-form-group select {
+    padding: 9px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 13.5px;
+    outline: none;
+}
+
+.sup95-form-group input::placeholder {
+    color: #adb5bd;
+}
+
+.disabled-input {
+    background-color: #eaebed;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+.date-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.date-input-wrapper input {
+    width: 100%;
+}
+
+.calendar-icon {
+    position: absolute;
+    right: 10px;
+    color: #adb5bd;
+    pointer-events: none;
+}
+
+.red-dot {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+    .sup95-main-content {
+        margin: 15px 40px;
+    }
+}
+
+@media (max-width: 991px) {
+    .sup95-form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .sup95-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sup95-main-content {
+        margin: 10px;
+    }
+}
+
+/* Custom Select Dropdown for GST portal simulation */
+.gst-custom-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.gst-custom-select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 13.5px;
+    color: #333;
+    user-select: none;
+    height: 38px;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.gst-custom-select-trigger.open,
+.gst-custom-select-trigger:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.gst-custom-select-arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #6c757d;
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+}
+
+.gst-custom-select-trigger.open .gst-custom-select-arrow {
+    transform: rotate(180deg);
+}
+
+/* Force options to show downwards */
+.gst-custom-select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-top: 4px;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.gst-custom-select-option {
+    padding: 8px 12px;
+    font-size: 13.5px;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.1s ease;
+}
+
+.gst-custom-select-option:hover {
+    background-color: #f1f3f6;
+}
+
+/* Active option matches the dark blue highlight of the portal */
+.gst-custom-select-option.selected {
+    background-color: #1a5cbb;
+    color: #fff;
+}

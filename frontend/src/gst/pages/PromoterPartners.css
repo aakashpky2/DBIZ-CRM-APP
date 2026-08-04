@@ -1,0 +1,195 @@
+/* ── Section card ─────────────────────────────────────────── */
+.pp-section {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    margin-bottom: 18px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.pp-section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a3a6e;
+    padding: 10px 16px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f7fafc;
+}
+
+.pp-sec-icon {
+    font-size: 16px;
+}
+
+/* ── Field group (sub-label like "Name of Person") ────────── */
+.pp-field-group {
+    padding: 12px 16px 0;
+}
+
+.pp-field-label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+/* override bd-form-row padding inside sections */
+.pp-section .bd-form-row {
+    padding: 10px 16px;
+    margin: 0;
+    gap: 16px;
+}
+
+.pp-section .bd-form-group {
+    padding: 0;
+}
+
+/* ── Mobile row (country code + input) ───────────────────── */
+.pp-mobile-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.pp-country-code {
+    flex-shrink: 0;
+    background: #edf2f7;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    padding: 7px 10px;
+    font-size: 13px;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.pp-std {
+    max-width: 70px !important;
+}
+
+/* ── Address note (italic disclaimer) ───────────────────── */
+.pp-address-note {
+    font-size: 12px;
+    color: #744210;
+    background: #fffff0;
+    border-left: 3px solid #d69e2e;
+    padding: 10px 16px;
+    margin: 12px 16px;
+    border-radius: 2px;
+    line-height: 1.6;
+}
+
+
+
+/* ── Reset address button ─────────────────────────────────── */
+.pp-reset-btn {
+    background: #2b6cb0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+}
+
+.pp-reset-btn:hover {
+    background: #2c5282;
+}
+
+/* ── Document upload ─────────────────────────────────────── */
+.pp-upload-row {
+    display: flex;
+    gap: 24px;
+    padding: 16px;
+    align-items: flex-start;
+}
+
+.pp-upload-left {
+    flex: 1;
+}
+
+.pp-upload-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 180px;
+}
+
+.pp-upload-hint {
+    font-size: 12px;
+    color: #4a5568;
+    margin: 3px 0;
+}
+
+.pp-camera-btn {
+    background: #1a3a6e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+}
+
+.pp-camera-btn:hover {
+    background: #2b6cb0;
+}
+
+/* ── Other information ───────────────────────────────────── */
+.pp-section .bd-toggle-group {
+    padding: 12px 16px;
+    margin: 0;
+}
+
+/* ── Action buttons row ─────────────────────────────────── */
+.pp-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 0 24px;
+}
+
+.pp-list-btn {
+    background: white;
+    color: #2b6cb0;
+    border: 1px solid #2b6cb0;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+}
+
+.pp-list-btn:hover {
+    background: #ebf8ff;
+}
+
+.pp-add-btn {
+    background: #e2e8f0;
+    color: #2d3748;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+}
+
+.pp-add-btn:hover {
+    background: #cbd5e0;
+}

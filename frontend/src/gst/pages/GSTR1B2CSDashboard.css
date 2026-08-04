@@ -1,0 +1,116 @@
+/* B2CS Dashboard Specific Styles */
+.b2cs-main-content {
+    /* padding and margin handled via inline styles for exact control */
+}
+
+/* Header Banner Variation */
+.b2cs-header-banner {
+    background-color: #1eb3a6;
+    /* cyan/teal */
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.b2cs-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.b2cs-title {
+    color: white;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.b2cs-empty-records {
+    background-color: #edf7ff;
+    border: 1px solid #d6eaf8;
+    color: #2c5e8a;
+    padding: 20px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.b2cs-actions-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 20px 20px 20px 0;
+}
+
+.b2cs-btn-primary {
+    background-color: #1d4f91;
+    color: white;
+    border: none;
+    height: 42px;
+    padding: 0 25px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.b2cs-btn-primary:hover {
+    background-color: #153a6b;
+}
+
+.b2cs-btn-outline {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #999;
+    height: 42px;
+    padding: 0 25px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.b2cs-btn-outline:hover {
+    background-color: #f5f5f5;
+}
+
+/* Records Table */
+.b2cs-records-table-container {
+    background-color: #fff;
+    margin: 20px 0;
+    overflow-x: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.b2cs-records-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.b2cs-records-table th {
+    background-color: #f3f4f6;
+    color: #374151;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 20px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.b2cs-records-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #111;
+}
+
+.b2cs-records-table tr:hover {
+    background-color: #f9fafb;
+}
+
+@media (max-width: 1024px) {
+    .b2cs-main-content {
+        padding: 0 20px;
+    }
+}

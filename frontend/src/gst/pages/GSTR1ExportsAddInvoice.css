@@ -1,0 +1,223 @@
+/* Exports Add Invoice Specific Styles */
+.exports-add-main-content {
+    margin-top: 15px;
+    background-color: #fff;
+    margin: 15px 120px 50px 120px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.exports-add-header-banner {
+    background-color: #1eb3a6;
+    /* cyan/teal */
+    padding: 15px 20px;
+}
+
+.exports-add-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.exports-add-content-body {
+    padding: 0 20px 20px 20px;
+}
+
+.exports-add-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.exports-add-back-arrow {
+    background-color: #1eb3a6;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.exports-add-mandatory-note {
+    font-size: 13px;
+    color: #111;
+}
+
+/* Form Grid */
+.exports-add-form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 25px 0;
+}
+
+.exports-add-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.exports-add-form-group label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.exports-add-form-group input,
+.exports-add-form-group select {
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 2px;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+}
+
+.exports-add-form-group input:focus,
+.exports-add-form-group select:focus {
+    border-color: #1eb3a6;
+}
+
+.exports-add-disabled-input {
+    background-color: #f3f4f6;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.exports-add-date-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.exports-add-date-input input {
+    padding-right: 40px;
+}
+
+.exports-add-calendar-icon {
+    position: absolute;
+    right: 1px;
+    background-color: #e5e7eb;
+    height: calc(100% - 2px);
+    width: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #d1d5db;
+}
+
+/* Item Details Table */
+.exports-add-item-details-section {
+    margin-top: 20px;
+}
+
+.exports-add-section-title {
+    font-size: 16px;
+    color: #2b4b7c;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.exports-add-table-container {
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+}
+
+.exports-add-item-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.exports-add-item-table th {
+    background-color: #fff;
+    color: #374151;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 15px;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.exports-add-item-table td {
+    padding: 8px 15px;
+    border: 1px solid #e5e7eb;
+}
+
+.exports-add-item-table input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 2px;
+    font-size: 13.5px;
+    outline: none;
+}
+
+.exports-add-item-table input:focus {
+    border-color: #1eb3a6;
+}
+
+.rate-cell {
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+}
+
+/* Actions */
+.exports-add-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding-top: 30px;
+}
+
+.exports-add-btn-primary {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.exports-add-btn-primary:hover {
+    background-color: #1b2e4b;
+}
+
+.exports-add-btn-outline {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #777;
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+    .exports-add-main-content {
+        margin: 15px 20px 50px 20px;
+    }
+
+    .exports-add-form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .exports-add-form-grid {
+        grid-template-columns: 1fr;
+    }
+}

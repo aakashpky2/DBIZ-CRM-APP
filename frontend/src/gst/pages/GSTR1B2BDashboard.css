@@ -1,0 +1,133 @@
+/* B2B Dashboard Specific Styles */
+.b2b-main-content {
+    margin-top: 15px;
+}
+
+.b2b-info-block {
+    background-color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 150px;
+}
+
+/* Header Banner Variation */
+.b2b-header-banner {
+    background-color: #1eb3a6;
+    /* cyan/teal */
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.b2b-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.b2b-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.b2b-header-tabs {
+    display: flex;
+    padding: 0 20px;
+    padding-bottom: 10px;
+}
+
+.b2b-tab {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* Empty records container */
+.b2b-empty-records {
+    background-color: #e0f2fe;
+    /* light blue */
+    padding: 30px 20px;
+    margin: 20px 0;
+    border: 1px solid #bae6fd;
+    color: #4b5563;
+    font-size: 14px;
+}
+
+/* Actions below empty records */
+.b2b-actions-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.b2b-btn-primary {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.b2b-btn-primary:hover {
+    background-color: #1b2e4b;
+}
+
+.b2b-btn-outline {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #777;
+    padding: 10px 25px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    background-clip: padding-box;
+}
+
+.b2b-btn-outline:hover {
+    background-color: #f9fafb;
+}
+
+/* Records Table */
+.b2b-records-table-container {
+    background-color: #fff;
+    margin: 20px 0;
+    overflow-x: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.b2b-records-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.b2b-records-table th {
+    background-color: #f3f4f6;
+    /* light gray header */
+    color: #374151;
+    /* dark gray text */
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 20px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.b2b-records-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #111;
+}
+
+.b2b-records-table tr:hover {
+    background-color: #f9fafb;
+}

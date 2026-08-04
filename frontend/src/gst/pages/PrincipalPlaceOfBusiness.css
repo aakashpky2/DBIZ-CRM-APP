@@ -1,0 +1,113 @@
+/* ── Jurisdiction divider ────────────────────────────────── */
+.ppb-jurisdiction-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 4px 0 0;
+}
+
+/* Force all selects inside the two-col sections to fixed width */
+.ppb-half .bd-select,
+.ppb-half select {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+
+.ppb-center-juris {
+    font-size: 13px;
+    color: #4a5568;
+}
+
+.ppb-cj-label {
+    font-weight: 500;
+}
+
+.ppb-link {
+    color: #2b6cb0;
+    text-decoration: underline;
+    font-size: 13px;
+}
+
+/* ── Info note under contact ─────────────────────────────── */
+.ppb-info-note {
+    font-size: 12px;
+    color: #4a90d9;
+    background: #ebf8ff;
+    border-left: 3px solid #90cdf4;
+    padding: 8px 14px;
+    margin: 0 16px 14px;
+    border-radius: 2px;
+}
+
+/* ── Nature of possession + Document Upload (side by side) ── */
+.ppb-two-col-section {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0;
+    align-items: stretch;
+}
+
+.ppb-half {
+    flex: 1;
+    margin-bottom: 16px;
+}
+
+.ppb-half:first-child {
+    margin-right: 12px;
+}
+
+/* ── Business activity grid (3 columns) ─────────────────── */
+.ppb-activity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 16px;
+    padding: 14px 16px 16px;
+}
+
+.ppb-activity-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #2d3748;
+    cursor: pointer;
+}
+
+.ppb-activity-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    accent-color: #1a3a6e;
+    flex-shrink: 0;
+}
+
+/* ── Have Additional Place of Business row ───────────────── */
+.ppb-additional-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px 16px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 4px;
+}
+
+/* ── Read-only input style ───────────────────────────────── */
+.bd-input-readonly {
+    background: #f7fafc;
+    color: #4a5568;
+    cursor: default;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 700px) {
+    .ppb-two-col-section {
+        flex-direction: column;
+    }
+    .ppb-half:first-child {
+        margin-right: 0;
+    }
+    .ppb-activity-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

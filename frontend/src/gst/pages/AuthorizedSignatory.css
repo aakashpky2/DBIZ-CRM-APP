@@ -1,0 +1,109 @@
+/* ── Primary Signatory checkbox ──────────────────────────── */
+.as-primary-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #2d3748;
+    margin-bottom: 14px;
+    cursor: pointer;
+}
+
+.as-primary-check input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    accent-color: #1a3a6e;
+}
+
+/* ── Photo thumbnail row ─────────────────────────────────── */
+.as-photo-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.as-photo-thumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
+.as-photo-thumb img {
+    width: 64px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+    border-radius: 3px;
+}
+
+.as-photo-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 70px;
+    padding: 10px 8px;
+    border: 1px dashed #90cdf4;
+    border-radius: 4px;
+    background: #ebf8ff;
+}
+
+.as-photo-icon {
+    opacity: 0.8;
+}
+
+.as-photo-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #4a5568;
+    text-align: center;
+}
+
+.as-delete-btn {
+    background: #fff5f5;
+    color: #e53e3e;
+    border: 1px solid #fed7d7;
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.as-delete-btn:hover {
+    background: #fed7d7;
+}
+
+/* ── Upload block ────────────────────────────────────────── */
+.as-upload-block {
+    margin-bottom: 8px;
+}
+
+/* ── File validation error ───────────────────────────────── */
+.as-file-error {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #c53030;
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-weight: 500;
+}
+
+.as-proof-note {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #e53e3e;
+    font-style: italic;
+    padding: 8px 10px;
+    background: #fff5f5;
+    border-left: 3px solid #fc8181;
+    border-radius: 2px;
+}

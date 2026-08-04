@@ -1,0 +1,260 @@
+.challan-main-content {
+    padding: 20px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.challan-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1eb3a6;
+    padding: 10px 20px;
+    border-radius: 4px 4px 0 0;
+    color: white;
+}
+
+.challan-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    /* Bold heading */
+}
+
+.challan-header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.challan-btn-help {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 4px 15px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.challan-refresh-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.challan-body-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.challan-form-section {
+    padding: 10px 40px;
+}
+
+.form-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.main-label {
+    width: 200px;
+    font-weight: bold;
+    /* Bold labels */
+    color: #333;
+    font-size: 14px;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    /* Bold radio text */
+    color: #333;
+}
+
+.dropdown-row {
+    margin-left: 200px;
+    gap: 60px;
+}
+
+.dropdown-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dropdown-group label {
+    font-size: 12px;
+    font-weight: bold;
+    /* Bold dropdown labels */
+    color: #333;
+}
+
+.dropdown-group select {
+    width: 200px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.info-banner-blue {
+    background-color: #e5f3f7;
+    border: 1px solid #bce1ee;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    color: #31708f;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.challan-action-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.btn-ledger {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.btn-proceed {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 8px 40px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-proceed.disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.ledger-table-container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.ledger-date {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.ledger-table th,
+.ledger-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.ledger-table th {
+    background-color: #f8fafc;
+    font-weight: bold;
+    color: #333;
+}
+
+.challan-notes {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #333;
+    padding-top: 10px;
+}
+
+.challan-notes ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.challan-notes ol li::marker {
+    font-weight: bold;
+    color: #333;
+}
+
+.red-dot {
+    color: #dc2626;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.arrow {
+    font-size: 10px;
+    transition: transform 0.2s;
+}
+
+.arrow.up {
+    transform: rotate(180deg);
+}
+
+.navigating-loader-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.navigating-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #1eb3a6;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

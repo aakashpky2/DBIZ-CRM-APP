@@ -1,0 +1,164 @@
+/* CDNR Dashboard Specific Styles */
+.cdnr-main-content {
+    margin: 20px 120px 40px 120px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.cdnr-header-banner {
+    background-color: #1eb3a6;
+    /* cyan/teal */
+    padding: 0;
+}
+
+.cdnr-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.cdnr-title {
+    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.cdnr-header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.cdnr-btn-secondary {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cdnr-refresh-icon {
+    background-color: #2b4b7c;
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cdnr-tab-bar {
+    background-color: #1eb3a6;
+    /* Matching banner but could be darker */
+    padding-left: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cdnr-tab {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.cdnr-tab.active {
+    background-color: #fff;
+    color: #111;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.cdnr-dashboard-body {
+    padding: 25px 20px;
+    min-height: 200px;
+}
+
+.cdnr-empty-alert {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    padding: 15px 20px;
+    border-radius: 4px;
+    border-left: 4px solid #1e88e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.close-alert {
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.cdnr-actions-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.cdnr-btn-primary {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.cdnr-btn-outline {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #666;
+    padding: 10px 35px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Table styling for later use */
+.cdnr-records-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.cdnr-records-table th {
+    background-color: #f3f4f6;
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 13px;
+    color: #444;
+}
+
+.cdnr-records-table td {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+}
+
+@media (max-width: 1024px) {
+    .cdnr-main-content {
+        margin: 20px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cdnr-main-content {
+        margin: 15px 10px;
+    }
+}

@@ -1,0 +1,137 @@
+/* Nil Rated Recreate Specific Styles */
+.nilrated-recreate-container {
+    margin: 20px 120px 40px 120px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.nilrated-recreate-header {
+    background-color: #1eb3a6;
+    /* cyan/teal */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nilrated-recreate-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.refresh-btn {
+    background-color: #2b4b7c;
+    border: none;
+    border-radius: 4px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.nilrated-recreate-body {
+    padding: 25px 20px;
+}
+
+.section-subtitle {
+    color: #2b4b7c;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+.nilrated-table-wrapper {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+}
+
+.nilrated-recreate-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+}
+
+.nilrated-recreate-table th {
+    background-color: #f3f4f6;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    color: #333;
+    font-weight: 600;
+}
+
+.nilrated-recreate-table td {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+}
+
+.desc-cell {
+    background-color: #fff;
+    color: #333;
+    padding-left: 15px !important;
+}
+
+.portal-input {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+    text-align: right;
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.portal-input:focus {
+    border-color: #1eb3a6;
+}
+
+.nilrated-recreate-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.portal-btn-save {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 10px 45px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.portal-btn-back {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #666;
+    padding: 10px 45px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+@media (max-width: 1280px) {
+    .nilrated-recreate-container {
+        margin: 20px 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nilrated-recreate-container {
+        margin: 15px 10px;
+    }
+
+    .nilrated-recreate-table th,
+    .nilrated-recreate-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+}

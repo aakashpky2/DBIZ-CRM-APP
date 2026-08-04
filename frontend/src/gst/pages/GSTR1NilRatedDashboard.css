@@ -1,0 +1,103 @@
+/* Nil Rated Dashboard Specific Styles */
+.nilrated-main-content {
+    margin-top: 15px;
+    padding: 0 120px;
+}
+
+/* Header Banner Variation */
+.nilrated-header-banner {
+    background-color: #1eb3a6;
+    /* cyan/teal */
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.nilrated-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.nilrated-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Empty records container */
+.nilrated-empty-records {
+    background-color: #f1f3f6;
+    padding: 30px 20px;
+    margin: 20px 0;
+    color: #4b5563;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}
+
+/* Actions below empty records */
+.nilrated-actions-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.nilrated-btn-primary {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 10px 35px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.nilrated-btn-outline {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #777;
+    padding: 10px 35px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Records Table */
+.nilrated-records-table-container {
+    background-color: #fff;
+    margin: 20px 0;
+    overflow-x: auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.nilrated-records-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.nilrated-records-table th {
+    background-color: #f3f4f6;
+    color: #444;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+}
+
+.nilrated-records-table td {
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    color: #111;
+}
+
+@media (max-width: 1024px) {
+    .nilrated-main-content {
+        padding: 0 20px;
+    }
+}

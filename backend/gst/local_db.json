@@ -1,0 +1,1620 @@
+{
+  "gst1234": {
+    "GSTR1_SUP95_NR2NR": {
+      "records": [
+        {
+          "supplierGstin": "",
+          "supplierName": "",
+          "pos": "12-Arunachal Pradesh",
+          "supplyType": "Inter-State",
+          "taxableValue": "23456",
+          "rate": "5%",
+          "integratedTax": "1172.80",
+          "centralTax": "",
+          "stateTax": "",
+          "cess": "",
+          "recipientGstin": "",
+          "recipientName": "",
+          "documentNumber": "",
+          "documentDate": "",
+          "totalValue": "",
+          "deemedExports": false,
+          "sezWithPayment": false,
+          "sezWithoutPayment": false,
+          "itemDetails": [
+            {
+              "rate": "0%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.25%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "3%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "6%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "7.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "12%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "18%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "28%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "40%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            }
+          ],
+          "id": 1779871631026
+        }
+      ]
+    },
+    "GSTR1_B2B_Invoices": {
+      "invoices": [
+        {
+          "recipientGSTIN": "2345678",
+          "recipientName": "akashpky",
+          "nameAsInMaster": "",
+          "invoiceNo": "345678",
+          "invoiceDate": "21/05/2026",
+          "totalInvoiceValue": "345678",
+          "pos": "06-Haryana",
+          "isDeemedExport": false,
+          "isSEZWithPayment": false,
+          "isSEZWithoutPayment": true,
+          "isReverseCharge": true,
+          "isIntraStateIGST": true,
+          "isDifferentialPercentage": false,
+          "supplyType": "Inter-State",
+          "itemDetails": [
+            {
+              "rate": "0%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.25%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "3%",
+              "taxableValue": "10000",
+              "integratedTax": "300.00",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "6%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "7.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "12%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "18%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "28%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "40%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            }
+          ],
+          "id": 1779871739782
+        }
+      ]
+    },
+    "GSTR1_B2CL_Invoices": {
+      "invoices": [
+        {
+          "isDifferential": true,
+          "pos": "02-Himachal Pradesh",
+          "invoiceNo": "34567890",
+          "invoiceDate": "27/05/2026",
+          "supplyType": "Inter-State",
+          "totalInvoiceValue": "2345678",
+          "itemDetails": [
+            {
+              "rate": "0%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.25%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "3%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "6%",
+              "taxableValue": "10000",
+              "integratedTax": "600.00",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "7.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "12%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "18%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "28%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "40%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            }
+          ],
+          "id": 1779871807259
+        }
+      ]
+    },
+    "GSTR1_Exports_Invoices": {
+      "invoices": [
+        {
+          "invoiceNo": "34567890",
+          "invoiceDate": "27/05/2026",
+          "portCode": "6578798",
+          "shippingBillNo": "",
+          "shippingBillDate": "27/05/2026",
+          "totalInvoiceValue": "980976867",
+          "supplyType": "Inter-State",
+          "gstPayment": "With Payment of Tax",
+          "itemDetails": [
+            {
+              "rate": "0%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.25%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1.5%",
+              "taxableValue": "567899",
+              "integratedTax": "8518.49",
+              "cess": ""
+            },
+            {
+              "rate": "3%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "6%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "7.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "12%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "18%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "28%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "40%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "cess": ""
+            }
+          ],
+          "id": 1779871839552
+        }
+      ]
+    },
+    "GSTR1_B2CS_Invoices": {
+      "invoices": [
+        {
+          "pos": "03-Punjab",
+          "taxableValue": "345465",
+          "supplyType": "Inter-State",
+          "isDifferentialRate": true,
+          "applicablePercentage": "65%",
+          "rate": "5%",
+          "integratedTax": "17273.25",
+          "centralTax": "",
+          "stateTax": "",
+          "cess": "576576",
+          "id": 1779871867449
+        }
+      ]
+    },
+    "GSTR1_NilRated_Supplies": {
+      "invoices": [
+        {
+          "description": "Intra-state supplies to registered person",
+          "nilRated": "3450.00",
+          "exempted": "4560.00",
+          "nonGst": "45670.00"
+        },
+        {
+          "description": "Intra-state supplies to unregistered person",
+          "nilRated": "0.00",
+          "exempted": "0.00",
+          "nonGst": "0.00"
+        },
+        {
+          "description": "Inter-state supplies to registered person",
+          "nilRated": "0.00",
+          "exempted": "0.00",
+          "nonGst": "0.00"
+        },
+        {
+          "description": "Inter-state supplies to unregistered person",
+          "nilRated": "0.00",
+          "exempted": "0.00",
+          "nonGst": "0.00"
+        }
+      ]
+    },
+    "GSTR1_CDNR_Invoices": {
+      "invoices": [
+        {
+          "deemedExports": false,
+          "sezWithPayment": true,
+          "sezWithoutPayment": false,
+          "reverseCharge": false,
+          "intraStateIgst": false,
+          "differentialRate": false,
+          "recipientGstin": "2345678",
+          "recipientName": "",
+          "nameInMaster": "",
+          "noteNumber": "4365757",
+          "noteDate": "27/05/2026",
+          "noteType": "Credit",
+          "noteValue": "23456",
+          "pos": "30-Goa",
+          "supplyType": "Inter-State",
+          "source": "",
+          "irn": "",
+          "irnDate": "",
+          "itemDetails": [
+            {
+              "rate": "0%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.25%",
+              "taxableValue": "34567",
+              "integratedTax": "86.42",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "3%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "6%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "7.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "12%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "18%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "28%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "40%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            }
+          ],
+          "id": 1779873326148
+        }
+      ]
+    },
+    "GSTR1_CDNUR_Invoices": {
+      "invoices": [
+        {
+          "differentialRate": true,
+          "type": "Exports without Payment",
+          "noteNumber": "4365757",
+          "noteDate": "27/05/2026",
+          "noteValue": "45670.00",
+          "noteType": "Credit",
+          "pos": "04-Chandigarh",
+          "supplyType": "Inter-State",
+          "source": "",
+          "irn": "",
+          "irnDate": "",
+          "taxDetails": {
+            "0%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "0.1%": {
+              "taxableValue": "456789",
+              "integratedTax": "456.79",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "0.25%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "1%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "1.5%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "3%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "5%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "6%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "7.5%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "12%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "18%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "28%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            "40%": {
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            }
+          },
+          "id": 1779873366095
+        }
+      ]
+    },
+    "GSTR1_AdvTax_Invoices": {
+      "records": [
+        {
+          "pos": "04-Chandigarh",
+          "supplyType": "Inter-State",
+          "applicablePercentage": "65%",
+          "itemDetails": [
+            {
+              "rate": "0.1%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.25%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1.5%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "3%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "5%",
+              "grossAdvance": "3456789",
+              "integratedTax": "172839.45",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "6%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "7.5%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "12%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "18%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "28%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "40%",
+              "grossAdvance": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            }
+          ],
+          "differentialRate": true,
+          "id": 1779873389225
+        }
+      ]
+    },
+    "GSTR1_AdjAdvances_Invoices": {
+      "records": [
+        {
+          "pos": "06-Haryana",
+          "supplyType": "Inter-State",
+          "applicablePercentage": "65%",
+          "itemDetails": [
+            {
+              "rate": "0.1%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.25%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1%",
+              "grossAdjustment": "4567890",
+              "integratedTax": "45678.90",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1.5%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "3%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "5%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "6%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "7.5%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "12%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "18%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "28%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "40%",
+              "grossAdjustment": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            }
+          ],
+          "differentialRate": true,
+          "id": 1779873411901
+        }
+      ]
+    },
+    "GSTR1_Docs_Issued": {
+      "documents": [
+        {
+          "fromSerial": "fsdfdfghik",
+          "toSerial": "ewertyuuy",
+          "total": "456780",
+          "cancelled": "0456789",
+          "net": 0,
+          "id": 1779873896064,
+          "category": "2. Invoices for inward supply from unregistered person"
+        }
+      ]
+    },
+    "GSTR1_ECO_TCS": {
+      "records": [
+        {
+          "gstin": "32AAJCD2816K1ZQ",
+          "tradeName": "E-Commerce Operator Ltd",
+          "netValue": "34567",
+          "integratedTax": "",
+          "centralTax": "172.84",
+          "stateTax": "172.84",
+          "cess": "0",
+          "id": 1779874329287
+        }
+      ]
+    },
+    "GSTR1_ECO_PAY": {
+      "records": [
+        {
+          "gstin": "32AAJCD2816K1ZQ",
+          "tradeName": "E-Commerce Operator Ltd",
+          "netValue": "7897.00",
+          "integratedTax": "",
+          "centralTax": "39.48",
+          "stateTax": "39.48",
+          "cess": "0",
+          "id": 1779876115742
+        }
+      ]
+    }
+  },
+  "GUEST-LEARNING-SESSION": {
+    "GSTR1_HSN_B2B": {
+      "records": [
+        {
+          "hsn": "8517",
+          "description": "",
+          "productNameMaster": "",
+          "descriptionAsPerHSN": "Mobile Phones",
+          "uqc": "PCS-PIECES",
+          "totalQuantity": "150",
+          "totalTaxableValue": "2500000",
+          "rate": "18%",
+          "integratedTax": "450000.00",
+          "centralTax": "90",
+          "stateTax": "90",
+          "cess": "0.00",
+          "id": 1779875680578
+        }
+      ]
+    }
+  },
+  "105223773068TRN": {
+    "BusinessDetails": {
+      "tradeName": "AA SOLUTIONS",
+      "additionalTrade": "",
+      "district": "Thiruvananthapuram",
+      "rule14A": "Yes",
+      "commencementDate": "2026-06-04",
+      "liabilityDate": "2026-06-04",
+      "regNo": "4354656786",
+      "regDate": "2026-06-26",
+      "constitution": "Limited Liability Partnership",
+      "casualTaxable": true,
+      "composition": true,
+      "reason": "Inter-State supply",
+      "regType": "GSTIN"
+    },
+    "PromoterPartners": {
+      "firstName": "ASWATHY",
+      "middleName": "",
+      "lastName": "B",
+      "fatherFirstName": "SURESH",
+      "fatherMiddleName": "KUMAR",
+      "fatherLastName": "S",
+      "dob": "2003-09-14",
+      "mobile": "8086516662",
+      "email": "aswathyb1409@gmail.com",
+      "gender": "Female",
+      "stdCode": "",
+      "telephone": "",
+      "designation": "Proprietor",
+      "din": "999999999",
+      "citizenOfIndia": true,
+      "pan": "GWTPB6165C",
+      "passport": "999999999",
+      "aadhaar": "972082730817",
+      "country": "India",
+      "pinCode": "695011",
+      "state": "kerala",
+      "district": "Thiruvananthapuram",
+      "city": "Thiruvananthapuram",
+      "locality": "",
+      "road": "MANDAPATHIN VILA",
+      "premises": "JYOTHI",
+      "buildingNo": "MRA 18",
+      "floorNo": "",
+      "landmark": "",
+      "photo": "C:\\fakepath\\WhatsApp Image 2026-05-06 at 11.40.10 AM.jpeg",
+      "alsoSignatory": false
+    },
+    "AuthorizedSignatory": {
+      "input_fd0uf": false,
+      "primarySignatory": false,
+      "firstName": "ASWATHY",
+      "middleName": "",
+      "lastName": "B",
+      "fatherFirstName": "SURESH",
+      "fatherMiddleName": "KUMAR",
+      "fatherLastName": "S",
+      "dob": "2003-09-14",
+      "mobile": "8086516662",
+      "email": "aswathyb1409@gmail.com",
+      "gender": "Female",
+      "stdCode": "",
+      "telephone": "",
+      "designation": "Proprietor",
+      "din": "",
+      "citizenOfIndia": true,
+      "pan": "GWTPB6165C",
+      "passport": "",
+      "aadhaar": "",
+      "country": "India",
+      "pinCode": "695011",
+      "state": "kerala",
+      "district": "Thiruvananthapuram",
+      "city": "Thiruvananthapuram",
+      "locality": "medical college ",
+      "road": "MANDAPATHIN VILA",
+      "premises": "JYOTHI",
+      "buildingNo": "MRA 18",
+      "floorNo": "",
+      "landmark": "",
+      "input_p08px": "C:\\fakepath\\WhatsApp Image 2026-05-06 at 11.40.10 AM.jpeg",
+      "proofType": "Letter of Authorisation",
+      "proofFile": "C:\\fakepath\\WhatsApp Image 2026-05-21 at 11.51.21 AM.jpeg"
+    },
+    "AuthorizedRepresentative": {
+      "hasRepresentative": true,
+      "repType": "GST Practitioner",
+      "enrolmentId": "3554657",
+      "firstName": "",
+      "middleName": "",
+      "lastName": "",
+      "designation": "",
+      "mobile": "",
+      "email": "",
+      "pan": "GWTPB6165C",
+      "aadhaar": "",
+      "stdTel": "",
+      "telephone": "",
+      "stdFax": "",
+      "fax": ""
+    },
+    "PrincipalPlaceOfBusiness": {
+      "pinCode": "695011",
+      "state": "kerala",
+      "district": "Thiruvananthapuram",
+      "city": "Thiruvananthapuram",
+      "locality": "medical college ",
+      "road": "MANDAPATHIN VILA",
+      "premises": "JYOTHI",
+      "buildingNo": "MRA 18",
+      "floorNo": "",
+      "landmark": "",
+      "latitude": "",
+      "longitude": "",
+      "state_jurisdiction": "kerala",
+      "sector": "Circle 2",
+      "commissionerate": "Thiruvananthapuram",
+      "division": "Division I",
+      "range": "Range I",
+      "email": "aasolutions@gmail.com",
+      "stdTel": "",
+      "telephone": "",
+      "mobile": "8086516662",
+      "stdFax": "",
+      "fax": "",
+      "possession": "Own",
+      "proofType": "Electricity Bill",
+      "input_lqlx4": "C:\\fakepath\\WhatsApp Image 2026-05-21 at 11.51.21 AM.jpeg",
+      "activities": [
+        "Works Contract",
+        "Import",
+        "Export"
+      ],
+      "proofFile": {},
+      "hasAdditional": true
+    },
+    "AdditionalPlacesOfBusiness": {
+      "pinCode": "695011",
+      "state": "kerala",
+      "district": "Thiruvananthapuram",
+      "city": "Thiruvananthapuram",
+      "locality": "medical college ",
+      "road": "MANDAPATHIN VILA",
+      "premises": "JYOTHI",
+      "buildingNo": "MRA 18",
+      "floorNo": "",
+      "landmark": "",
+      "latitude": "",
+      "longitude": "",
+      "email": "aasolutions@gmail.com",
+      "stdTel": "",
+      "telephone": "08086516662",
+      "mobile": "8086516662",
+      "stdFax": "",
+      "fax": "",
+      "possession": "Own",
+      "proofType": "Electricity Bill",
+      "proofFile": "C:\\fakepath\\WhatsApp Image 2026-05-06 at 11.40.10 AM.jpeg",
+      "activities": [
+        "Works Contract",
+        "Import",
+        "Export"
+      ]
+    },
+    "GoodsAndServices": {
+      "search_hsn_chapter_by_name_or_code": "234567"
+    },
+    "StateSpecificInformation": {
+      "ptEcNo": "354657",
+      "ptRcNo": "77898909",
+      "exciseLicenseNo": "68799809-",
+      "exciseLicenseName": "ASWATHY B"
+    },
+    "AadhaarAuthentication": {
+      "optForAuth": true,
+      "input_r3eka": true
+    },
+    "Verification": {
+      "input_xg8yo": true,
+      "declarerName": "ASWATHY B",
+      "place": "Thiruvananthapuram",
+      "designation": "Proprietor",
+      "verified": true
+    }
+  },
+  "aswathy165c": {
+    "GSTR1_B2B_Invoices": {
+      "invoices": [
+        {
+          "recipientGSTIN": "2345678",
+          "recipientName": "retyuio",
+          "nameAsInMaster": "",
+          "invoiceNo": "34567890",
+          "invoiceDate": "04/06/2026",
+          "totalInvoiceValue": "980976867",
+          "pos": "32-Kerala",
+          "isDeemedExport": false,
+          "isSEZWithPayment": true,
+          "isSEZWithoutPayment": false,
+          "isReverseCharge": false,
+          "isIntraStateIGST": false,
+          "isDifferentialPercentage": false,
+          "supplyType": "Intra-State",
+          "itemDetails": [
+            {
+              "rate": "0%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.1%",
+              "taxableValue": "5467",
+              "integratedTax": "",
+              "centralTax": "2.73",
+              "stateTax": "2.73",
+              "cess": ""
+            },
+            {
+              "rate": "0.25%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "3%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "6%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "7.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "12%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "18%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "28%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "40%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            }
+          ],
+          "id": 1782280744284
+        },
+        {
+          "recipientGSTIN": "23456",
+          "recipientName": "ertyui",
+          "nameAsInMaster": "",
+          "invoiceNo": "34789",
+          "invoiceDate": "04/06/2026",
+          "totalInvoiceValue": "456",
+          "pos": "02-Himachal Pradesh",
+          "isDeemedExport": false,
+          "isSEZWithPayment": false,
+          "isSEZWithoutPayment": false,
+          "isReverseCharge": false,
+          "isIntraStateIGST": false,
+          "isDifferentialPercentage": false,
+          "supplyType": "Inter-State",
+          "itemDetails": [
+            {
+              "rate": "0%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.1%",
+              "taxableValue": "456789",
+              "integratedTax": "456.79",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "0.25%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "1.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "3%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "6%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "7.5%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "12%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "18%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "28%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            },
+            {
+              "rate": "40%",
+              "taxableValue": "",
+              "integratedTax": "",
+              "centralTax": "",
+              "stateTax": "",
+              "cess": ""
+            }
+          ],
+          "id": 1782372506664
+        }
+      ]
+    },
+    "GSTR1_B2CS_Invoices": {
+      "invoices": [
+        {
+          "pos": "32-Kerala",
+          "taxableValue": "100",
+          "rate": "5%",
+          "supplyType": "Intra-State",
+          "integratedTax": "",
+          "centralTax": "2.50",
+          "stateTax": "2.50",
+          "cess": "0.00"
+        }
+      ]
+    },
+    "GSTR1_B2CL_Invoices": {
+      "invoices": [
+        {
+          "isDifferential": false,
+          "pos": "32-Kerala",
+          "invoiceNo": "INV123",
+          "invoiceDate": "2026-03-10",
+          "supplyType": "Intra-State",
+          "totalInvoiceValue": "1000",
+          "itemDetails": [
+            {
+              "rate": "18%",
+              "taxableValue": "800",
+              "integratedTax": "",
+              "centralTax": "72.00",
+              "stateTax": "72.00",
+              "cess": "0.00"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "296900413926TRN": {
+    "BusinessDetails": {
+      "tradeName": "DBIX SOLUTIONS",
+      "additionalTrade": "AA SOLUTIONS",
+      "district": "Thiruvananthapuram",
+      "rule14A": "Yes",
+      "commencementDate": "2026-06-30",
+      "liabilityDate": "2026-06-25",
+      "regNo": "4354656786",
+      "regDate": "2026-06-19",
+      "constitution": "Foreign Company",
+      "casualTaxable": true,
+      "composition": true,
+      "reason": "Inter-State supply",
+      "regType": "GSTIN"
+    },
+    "PromoterPartners": {
+      "firstName": "Kasthuri",
+      "middleName": "",
+      "lastName": "Unni",
+      "fatherFirstName": "Kasthuri",
+      "fatherMiddleName": "",
+      "fatherLastName": "Unni",
+      "dob": "2026-06-30",
+      "mobile": "8714089342",
+      "email": "kasthuriunni8@gmail.com",
+      "gender": "Female",
+      "stdCode": "",
+      "telephone": "",
+      "designation": "ergtrhrth",
+      "din": "999999999",
+      "citizenOfIndia": true,
+      "pan": "GWTPB6165C",
+      "passport": "",
+      "aadhaar": "",
+      "country": "India",
+      "pinCode": "691571",
+      "state": "Kerala",
+      "district": "kollam",
+      "city": "kollam",
+      "locality": "",
+      "road": "aertyuiop",
+      "premises": "",
+      "buildingNo": "45456",
+      "floorNo": "",
+      "landmark": "",
+      "photo": "C:\\fakepath\\WhatsApp Image 2026-05-21 at 11.51.21 AM.jpeg",
+      "alsoSignatory": true
+    },
+    "AadhaarAuthentication": {
+      "optForAuth": true,
+      "input_6b70j": true
+    },
+    "Verification": {
+      "input_s16ho": true,
+      "declarerName": "GST USER",
+      "place": "Thiruvananthapuram",
+      "designation": "Proprietor",
+      "verified": true
+    }
+  },
+  "temp_users": [
+    {
+      "username": "TMP_X5Y8_9937",
+      "password_hash": "$2b$10$CvLupytOcuEMeQ0GGpvpZ./YGZmpO1ONiiK/uBI5fnW27n41Yqo2e",
+      "email": "gst_user_8110@example.com",
+      "role": "student",
+      "status": "active",
+      "permissions": {
+        "is_temporary_login": true,
+        "first_login_completed": false,
+        "pan": "TESTPAN1234",
+        "user_type": "Taxpayer",
+        "state": "Unknown",
+        "legal_name": "GST USER",
+        "mobile": "0000000000",
+        "trn": "296900413926TRN"
+      }
+    },
+    {
+      "username": "GST871643683",
+      "password_hash": "$2b$10$sjO9zJMZV36ND8mg6sfyO.Z325KhiJC9fAcjPnnebZpOq0j.B7nnm",
+      "email": "gst_user_3557@example.com",
+      "role": "student",
+      "status": "active",
+      "permissions": {
+        "is_temporary_login": true,
+        "first_login_completed": false,
+        "pan": "BMRLL1751W",
+        "user_type": "Taxpayer",
+        "state": "Delhi",
+        "state_code": "07",
+        "legal_name": "GST Registrant",
+        "mobile": "0000000000",
+        "trn": "296900413926TRN",
+        "gstin": "07BMRLL1751W1Z6",
+        "entity_code": "1",
+        "checksum": "6",
+        "financial_year": "2026-27",
+        "registration_date": "2026-06-30T08:41:11.946Z"
+      }
+    }
+  ]
+}

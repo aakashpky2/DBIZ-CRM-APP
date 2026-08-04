@@ -1,0 +1,65 @@
+/* CSS for CDNUR Add Record - Item Details Table */
+.cdnur-tax-table-wrapper {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cdnur-tax-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+}
+
+.cdnur-tax-table th {
+    background-color: #f3f4f6;
+    color: #333;
+    font-weight: 600;
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.cdnur-tax-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.rate-cell {
+    background-color: #fff;
+    font-weight: 500;
+    color: #444;
+}
+
+.table-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    text-align: right;
+    font-size: 13.5px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.table-input:focus {
+    border-color: #1eb3a6;
+}
+
+.disabled-table-input {
+    background-color: #f5f5f5;
+    color: #666;
+    cursor: default;
+}
+
+@media (max-width: 768px) {
+    .cdnur-tax-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .cdnur-tax-table {
+        min-width: 600px;
+    }
+}

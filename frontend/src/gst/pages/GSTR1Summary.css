@@ -1,0 +1,245 @@
+.gstr1-summary-container {
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.gstr1-summary-content {
+    padding: 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.consolidated-summary-header {
+    background-color: #26a69a; /* Teal color from image */
+    color: white;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.consolidated-summary-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.summary-table-container {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    overflow-x: auto;
+}
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.summary-table th {
+    background-color: #e0f2f1; /* Light teal */
+    color: #333;
+    padding: 12px 10px;
+    text-align: right;
+    border-bottom: 2px solid #26a69a;
+    font-weight: 600;
+}
+
+.summary-table th:first-child {
+    text-align: left;
+}
+
+.summary-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: right;
+    color: #444;
+}
+
+.summary-table td:first-child {
+    text-align: left;
+    color: #1a237e; /* Dark blue for description */
+    font-weight: 500;
+}
+
+.section-row-main td:first-child {
+    font-weight: 600;
+    color: #1a237e;
+}
+
+.summary-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.summary-table .total-row {
+    background-color: #f1f8e9;
+    font-weight: 700;
+}
+
+.summary-table .total-row td {
+    border-top: 2px solid #26a69a;
+}
+
+.summary-table .gray-cell {
+    background-color: #eeeeee;
+}
+
+.expand-link {
+    color: #3f51b5;
+    text-decoration: none;
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+.gstr1-summary-header-banner {
+    background-color: #f1f3f6;
+    padding: 15px 24px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gstr1-summary-title {
+    font-size: 20px;
+    color: #1a237e;
+    margin: 0;
+    font-weight: 500;
+}
+
+.summary-actions-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px 0;
+}
+
+.btn-summary {
+    padding: 10px 25px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: none;
+}
+
+.btn-summary-back {
+    background-color: white;
+    border: 1px solid #1a237e;
+    color: #1a237e;
+}
+
+.btn-summary-pdf {
+    background-color: #1a237e;
+    color: white;
+}
+
+.btn-summary-file {
+    background-color: #9e9e9e;
+    color: white;
+    cursor: not-allowed;
+}
+
+.btn-summary-file.active {
+    background-color: #26a69a !important;
+    color: white;
+    cursor: pointer;
+}
+
+.blue-subtext {
+    color: #2196f3;
+}
+
+/* Expansion Drawers & Recipient Sub-Tables */
+.section-row-main {
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.section-row-main:hover {
+    background-color: #f0f4c3 !important;
+}
+
+.section-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+    margin-right: 8px;
+    font-size: 10px;
+    color: #26a69a;
+}
+
+.section-arrow.expanded {
+    transform: rotate(90deg);
+}
+
+.nested-summary-container {
+    background-color: #fafafa;
+    padding: 10px 20px !important;
+    border-bottom: 1px solid #ddd;
+}
+
+.nested-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    font-size: 12px;
+    border: 1px solid #cfd8dc;
+}
+
+.nested-summary-table th {
+    background-color: #eceff1 !important;
+    color: #37474f;
+    font-weight: 600;
+    border: 1px solid #cfd8dc;
+    padding: 8px 10px;
+}
+
+.nested-summary-table td {
+    border: 1px solid #cfd8dc;
+    padding: 8px 10px;
+    background-color: #ffffff;
+}
+
+.nested-recipient-row {
+    cursor: pointer;
+    background-color: #f9fbe7 !important;
+}
+
+.nested-recipient-row:hover {
+    background-color: #f4f5db !important;
+}
+
+/* Print Rules for GSTR-1 Summary */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #root, .dashboard-container, .gstr1-summary-content, .gstr1-summary-content * {
+        visibility: visible;
+    }
+    .gstr1-summary-content {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .summary-actions-bottom,
+    .dashboard-breadcrumb-bar,
+    .dashboard-footer-bar,
+    .bottom-info-blue-bar,
+    .expand-link,
+    .blue-subtext,
+    .gstr1-btn-icon {
+        display: none !important;
+    }
+}

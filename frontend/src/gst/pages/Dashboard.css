@@ -1,0 +1,541 @@
+.dashboard-container {
+    background-color: white;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header & Navbar */
+.dashboard-nav-container {
+    background-color: #1b2e4b;
+    /* Dark Blue as in screenshot */
+    padding: 0 120px;
+}
+
+.dashboard-nav-tabs {
+    display: flex;
+    overflow-x: auto;
+}
+
+.nav-tab {
+    padding: 12px 18px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s;
+    font-weight: 400;
+}
+
+.nav-tab:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-tab.active {
+    background-color: #ffffff;
+    color: #1b2e4b;
+    font-weight: 600;
+}
+
+/* Sub-navbar (light gray/blue) */
+.dashboard-sub-navbar {
+    background-color: #f1f3f6;
+    padding: 8px 120px;
+    display: flex;
+    gap: 25px;
+    border-bottom: 1px solid #d1d5db;
+    flex-wrap: wrap;
+    min-height: 38px;
+    align-items: center;
+}
+
+.dashboard-sub-nav-link {
+    color: #1b2e4b;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.dashboard-sub-nav-link:hover {
+    color: #3b82f6;
+}
+
+/* Breadcrumb Bar */
+.dashboard-breadcrumb-bar {
+    background-color: #ffffff;
+    padding: 10px 120px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.breadcrumb-left {
+    color: #3b82f6;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.breadcrumb-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 12px;
+}
+
+.skip-to-content {
+    color: #1b2e4b;
+    cursor: pointer;
+}
+
+/* Login Info Bar */
+.login-info-bar {
+    padding: 10px 120px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #000;
+    font-weight: 600;
+}
+
+/* Main Layout */
+.dashboard-main-content {
+    padding: 0 120px;
+    margin-top: 20px;
+}
+
+.content-left {
+    flex: 1;
+}
+
+.content-right {
+    width: 320px;
+}
+
+/* Welcome Section */
+.welcome-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome-title {
+    font-size: 18px;
+    color: #1b2e4b;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.filing-preference {
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;
+}
+
+.filing-preference a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Returns Calendar Table */
+.returns-calendar-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calendar-title {
+    font-size: 18px;
+    color: #1b2e4b;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.calendar-table {
+    width: auto;
+    margin: 0 auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-table th,
+.calendar-table td {
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 13px;
+    border: 2px solid #fff;
+    min-width: 90px;
+}
+
+.calendar-header-label {
+    background-color: #2b4b7c;
+    color: #fff;
+    font-weight: bold;
+    width: 130px;
+    min-width: 130px !important;
+}
+
+.month-header {
+    background-color: #1eb3a6;
+    color: #fff;
+    font-weight: bold;
+}
+
+.month-header.to-be-filed {
+    background-color: #e67e22;
+}
+
+.cell-filed {
+    background-color: #1eb3a6;
+    color: #fff;
+}
+
+.cell-to-be-filed {
+    background-color: #e67e22;
+    color: #fff;
+}
+
+.status-text {
+    display: block;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+/* Hover Animation for Filed Cells */
+.filed-cell {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.filed-cell .cell-main {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.filed-cell:hover .cell-main {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.filed-cell .hover-anim-panel {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #f1f3f6;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+    transition: left 0.3s ease-in-out;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #1eb3a6;
+}
+
+.filed-cell:hover .hover-anim-panel {
+    left: 0;
+}
+
+/* Info Boxes */
+.info-box-container {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.info-box {
+    border: 1px solid #777;
+    padding: 10px 40px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    width: fit-content;
+}
+
+.geocode-box {
+    border: 1px solid #777;
+    padding: 15px 25px;
+    background-color: #fff;
+    font-size: 13px;
+    line-height: 1.5;
+    font-style: italic;
+    text-align: center;
+    max-width: 600px;
+    font-weight: 500;
+}
+
+.continue-link {
+    color: #3b82f6;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Right Sidebar */
+.profile-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 25px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.profile-gstin {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.view-profile-link {
+    color: #167dc2;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.quick-links-container {
+    padding: 0;
+}
+
+.quick-links-container h3 {
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.quick-links-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.quick-links-list li a {
+    color: #167dc2;
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.quick-links-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Action Buttons Grid */
+.action-buttons-container {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.top-buttons-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.action-btn {
+    background-color: #2b4b7c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    flex: 1;
+    max-width: 250px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-btn:hover {
+    background-color: #1b2e4b;
+}
+
+/* Footer Bar */
+.dashboard-footer-bar {
+    background-color: #1b2e4b;
+    color: #d1d5db;
+    padding: 15px 120px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 40px;
+}
+
+.bottom-info-blue-bar {
+    background-color: #2b4b7c;
+    color: #fff;
+    padding: 8px 0;
+    text-align: center;
+    font-size: 11px;
+}
+
+.scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    background-color: #555;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (max-width: 1024px) {
+
+    .dashboard-nav-container,
+    .dashboard-sub-navbar,
+    .dashboard-breadcrumb-bar,
+    .login-info-bar,
+    .dashboard-main-content,
+    .action-buttons-container,
+    .dashboard-footer-bar {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .dashboard-main-content {
+        flex-direction: column;
+    }
+
+    .content-right {
+        width: 100%;
+    }
+}
+
+/* Aadhaar Authentication Modal */
+.aadhaar-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.aadhaar-modal-content {
+    background-color: #fff;
+    width: 90%;
+    max-width: 750px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border-top: 5px solid #2b4b7c;
+    animation: zoomIn 0.4s ease-out;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.aadhaar-modal-text {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 35px;
+    font-weight: 600;
+}
+
+.aadhaar-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.aadhaar-btn-yes,
+.aadhaar-btn-later {
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+}
+
+.aadhaar-btn-yes {
+    background-color: #2b4b7c;
+    color: white;
+}
+
+.aadhaar-btn-yes:hover {
+    background-color: #1b2e4b;
+}
+
+.aadhaar-btn-later {
+    background-color: #1b2e4b;
+    color: white;
+}
+
+.aadhaar-btn-later:hover {
+    background-color: #0d1a2d;
+}
+
+.aadhaar-modal-footer {
+    font-size: 13px;
+    color: #444;
+    padding-top: 20px;
+    line-height: 1.6;
+    border-top: 1px solid #eee;
+}
+
+.aadhaar-modal-footer strong {
+    font-weight: 600;
+}
