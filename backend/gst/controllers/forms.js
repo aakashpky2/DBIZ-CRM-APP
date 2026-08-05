@@ -2112,14 +2112,14 @@ exports.getTaxpayerProfile = async (req, res) => {
             console.warn('Could not query business_details from Supabase:', e.message);
         }
 
-        // 2. Try to fetch from users table in Supabase
+        // 2. Try to fetch from gst_users table in Supabase
         let userData = null;
         try {
-            const { data } = await supabase
-                .from('users')
+            const { data } = await supabaseAdmin
+                .from('gst_users')
                 .select('*')
-                .eq('trn', trn)
-                .single();
+                .eq('username', trn)
+                .maybeSingle();
             if (data) userData = data;
         } catch (e) {
             console.warn('Could not query users from Supabase:', e.message);

@@ -18,8 +18,8 @@ exports.registerStep1 = async (req, res, next) => {
         } = req.body;
 
         // Check if user already exists
-        const { data: existingUser, error: findError } = await supabase
-            .from('users')
+        const { data: existingUser, error: findError } = await supabaseAdmin
+            .from('gst_users')
             .select('email')
             .eq('email', email);
 
@@ -95,14 +95,17 @@ exports.verifyOtp = async (req, res, next) => {
             
             console.log("Registration Part A saved successfully for TRN:", finalTrn);
 
-            // Attempt to insert into users table (optional, depending on DB rules)
-            const { error: userError } = await supabase
-                .from('users')
+            // Attempt to insert into gst_users table (optional, depending on DB rules)
+            // Hash a dummy password for the temp TRN username
+            const dummyPasswordHash = await bcrypt.hash(Math.random().toString(36).slice(-8), 10);
+            const { error: userError } = await supabaseAdmin
+                .from('gst_users')
                 .insert([{
                     email: email,
-                    pan: pan || null,
                     username: finalTrn, // Uses TRN as a temp username for now
-                    password: Math.random().toString(36).slice(-8)
+                    password_hash: dummyPasswordHash,
+                    role: 'taxpayer',
+                    status: 'active'
                 }]);
             
             if (userError) {
@@ -275,17 +278,16 @@ exports.completeRegistration = async (req, res, next) => {
             registration_date: new Date().toISOString()
         };
 
-        // Insert/Update the user in the users table
-        const { data: newUser, error: userError } = await supabase
-            .from('users')
+        // Insert/Update the user in the gst_users table
+        const { data: newUser, error: userError } = await supabaseAdmin
+            .from('gst_users')
             .upsert(
                 {
                     username: tempUsername,
                     password_hash: tempPasswordHash,
                     email: userEmail,
-                    role: 'student',
-                    status: 'active',
-                    permissions: permissions
+                    role: 'taxpayer',
+                    status: 'active'
                 },
                 { onConflict: 'username' }
             )
@@ -293,45 +295,6 @@ exports.completeRegistration = async (req, res, next) => {
 
         if (userError) {
             console.error("Failed to create final credentials:", userError);
-            
-            if ((userError.message && userError.message.includes('Project paused')) || userError.code === '42501' || (userError.message && userError.message.includes('row-level security'))) {
-                console.warn("DB PAUSED OR RLS BLOCKED: Simulating credential creation success. Falling back to local_db.json");
-                
-                // Save to local fallback
-                const fs = require('fs');
-                const path = require('path');
-                const LOCAL_DB_PATH = path.join(__dirname, '../local_db.json');
-                try {
-                    let localDb = {};
-                    if (fs.existsSync(LOCAL_DB_PATH)) {
-                        localDb = JSON.parse(fs.readFileSync(LOCAL_DB_PATH, 'utf8') || '{}');
-                    }
-                    if (!localDb['temp_users']) localDb['temp_users'] = [];
-                    localDb['temp_users'].push({
-                        username: tempUsername,
-                        password_hash: tempPasswordHash,
-                        email: userEmail,
-                        role: 'student',
-                        status: 'active',
-                        permissions: permissions
-                    });
-                    fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify(localDb, null, 2), 'utf8');
-                } catch (e) {
-                    console.error("Failed to write user to local_db.json", e.message);
-                }
-
-                return res.status(200).json({
-                    success: true,
-                    message: 'Registration completed (Simulated - Supabase RLS is blocking inserts).',
-                    credentials: {
-                        username: tempUsername,
-                        password: tempPassword,
-                        gstin: gstinData.gstin
-                    },
-                    isSimulated: true
-                });
-            }
-            
             return res.status(500).json({ 
                 success: false, 
                 message: 'Database Error: Could not create credentials. (RLS or permissions issue)',
@@ -341,8 +304,9 @@ exports.completeRegistration = async (req, res, next) => {
         }
 
         // Delete the temporary TRN user so only the new credentials work
-        await supabase
-            .from('users')
+        // We leave the old delete here as a cleanup in case TRN was placed in gst_users
+        await supabaseAdmin
+            .from('gst_users')
             .delete()
             .eq('username', trn);
 

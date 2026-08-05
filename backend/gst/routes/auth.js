@@ -29,13 +29,14 @@ router.get('/trn-details/:trn', async (req, res, next) => {
         }
 
         // Check if registration is already completed for this TRN
-        const { data: existingUser } = await supabase
-            .from('users')
+        // If the TRN is no longer present as a username, it means they completed registration and their real username replaced the TRN.
+        const { data: existingUser } = await supabaseAdmin
+            .from('gst_users')
             .select('username')
-            .eq('trn', trn)
-            .single();
+            .eq('username', trn)
+            .maybeSingle();
 
-        if (existingUser) {
+        if (!existingUser) {
             return res.status(403).json({ 
                 success: false, 
                 message: 'This TRN is now disabled because the application has been submitted. Please login with your generated username and password.' 
