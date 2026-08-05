@@ -29,7 +29,6 @@ exports.login = async (req, res, next) => {
       password
     });
 
-    // Check if error is invalid credentials or auth-related vs unexpected DB error
     if (authError) {
       if (authError.message.toLowerCase().includes('invalid')) {
         return res.status(401).json({
@@ -53,34 +52,42 @@ exports.login = async (req, res, next) => {
       passwordStorageType: 'supabase-auth'
     });
 
-    const { data: dbUser, error: dbError } = await supabase.supabaseAdmin
-      .from('users')
-      .select('*')
-      .eq('id', user.id)
-      .maybeSingle();
-
-    console.log('[CRM AUTH] User lookup', {
-      email,
-      userFound: Boolean(dbUser),
-      queryErrorCode: dbError?.code || null,
-      queryErrorMessage: dbError?.message || null,
+    console.log('[CRM AUTH] Auth succeeded', {
+      authUserId: user.id,
+      email: user.email,
     });
 
-    if (dbError) {
-      console.error('SUPABASE DB ERROR:', dbError.message);
+    const { data: profile, error: profileError } =
+      await supabase.supabaseAdmin
+        .from('users')
+        .select('*')
+        .eq('id', user.id)
+        .maybeSingle();
+
+    console.log('[CRM AUTH] Profile query result', {
+      authUserId: user.id,
+      profileFound: Boolean(profile),
+      errorCode: profileError?.code || null,
+      errorMessage: profileError?.message || null,
+      errorDetails: profileError?.details || null,
+      errorHint: profileError?.hint || null,
+    });
+
+    if (profileError) {
       return res.status(500).json({
         success: false,
-        message: 'Internal server error during profile lookup'
+        message: 'CRM profile query failed',
       });
     }
 
-    if (!dbUser) {
-      console.log('LOGIN BLOCKED: User profile not configured for ID:', user.id);
-      return res.status(401).json({
+    if (!profile) {
+      return res.status(403).json({
         success: false,
-        message: 'User profile is not configured. Please contact admin.'
+        message: 'CRM profile not found',
       });
     }
+
+    const dbUser = profile;
 
     console.log("USER ROLE:", dbUser.role);
     const allowedRoles = ['superadmin', 'admin', 'channel', 'institute', 'manager', 'student'];
