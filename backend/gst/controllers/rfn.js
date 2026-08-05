@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 const mockData = [
     { rfn_number: 'RFN-2023-VALID-01', document_type: 'Notice', document_title: 'Show Cause Notice for Tax Demand', issued_by: 'State Tax', officer_name: 'Rajesh Kumar', officer_designation: 'Assistant Commissioner', state: 'Maharashtra', gstin: '27AAAAA0000A1Z5', taxpayer_name: 'Reliance Industries Ltd.', issue_date: '2023-01-15', validity_date: '2023-12-31', document_status: 'Valid', remarks: 'Respond within 30 days.' },

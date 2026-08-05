@@ -17,7 +17,7 @@ router.get('/me', protect, getMe);
 router.get('/trn-details/:trn', async (req, res, next) => {
     try {
         const trn = req.params.trn;
-        const supabase = require('../config/supabase'); // Local require to avoid circular deps if any
+        const { supabase, supabaseAdmin } = require('../../config/supabase'); // Local require to avoid circular deps if any
         const { data, error } = await supabase
             .from('business_details')
             .select('legal_name, pan, state_name, district')

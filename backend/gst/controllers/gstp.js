@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 const mockData = [
     { name: 'Rajesh Kumar', gstp_id: 'GSTP27MUM001', enrollment_number: 'ENR2023MH1234', mobile: '9876543210', email: 'rajesh.kumar@email.com', state: 'Maharashtra', district: 'Mumbai', status: 'Active' },

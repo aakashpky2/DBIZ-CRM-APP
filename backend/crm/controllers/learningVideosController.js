@@ -1,5 +1,5 @@
 const axios = require('axios');
-const supabaseAdmin = require('../config/supabaseAdmin');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 const { notifyAllStudents } = require('../utils/notificationService');
 
 // Helper to extract video ID and build thumbnail & title

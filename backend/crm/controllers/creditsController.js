@@ -1,10 +1,10 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 const { createNotification } = require('../utils/notificationService');
 
 // Helper to resolve student profile from database
 const resolveStudentProfile = async (studentId) => {
   try {
-    const { data, error } = await supabase.supabaseAdmin
+    const { data, error } = await supabaseAdmin
       .from('users')
       .select('username, role')
       .eq('id', studentId)
@@ -35,7 +35,7 @@ exports.getStudentCredits = async (req, res, next) => {
   const studentId = req.user.id;
   try {
     // Check if student credit record exists
-    let { data: credits, error } = await supabase.supabaseAdmin
+    let { data: credits, error } = await supabaseAdmin
       .from('student_credits')
       .select('*')
       .eq('student_id', studentId)
@@ -52,7 +52,7 @@ exports.getStudentCredits = async (req, res, next) => {
         remaining_credits: 5
       };
 
-      const { data: newCredits, error: createError } = await supabase.supabaseAdmin
+      const { data: newCredits, error: createError } = await supabaseAdmin
         .from('student_credits')
         .insert(defaultCredits)
         .select()
@@ -62,7 +62,7 @@ exports.getStudentCredits = async (req, res, next) => {
       credits = newCredits;
 
       // Add a transaction record for initial credits
-      await supabase.supabaseAdmin
+      await supabaseAdmin
         .from('credit_transactions')
         .insert({
           student_id: studentId,
@@ -98,7 +98,7 @@ exports.requestCredits = async (req, res, next) => {
 
   try {
     // Do not allow duplicate pending requests
-    const { data: pending, error: checkError } = await supabase.supabaseAdmin
+    const { data: pending, error: checkError } = await supabaseAdmin
       .from('credit_requests')
       .select('id')
       .eq('student_id', studentId)
@@ -112,7 +112,7 @@ exports.requestCredits = async (req, res, next) => {
       });
     }
 
-    const { data: request, error: insertError } = await supabase.supabaseAdmin
+    const { data: request, error: insertError } = await supabaseAdmin
       .from('credit_requests')
       .insert({
         student_id: studentId,
@@ -141,7 +141,7 @@ exports.requestCredits = async (req, res, next) => {
 exports.getStudentTransactions = async (req, res, next) => {
   const studentId = req.user.id;
   try {
-    const { data: transactions, error } = await supabase.supabaseAdmin
+    const { data: transactions, error } = await supabaseAdmin
       .from('credit_transactions')
       .select('*')
       .eq('student_id', studentId)
@@ -160,7 +160,7 @@ exports.getStudentTransactions = async (req, res, next) => {
 // @access  Private/SuperAdmin
 exports.getCreditConfig = async (req, res) => {
   try {
-    const { data, error } = await supabase.supabaseAdmin.from('credit_configuration').select('*').order('action_key');
+    const { data, error } = await supabaseAdmin.from('credit_configuration').select('*').order('action_key');
     if (error) throw error;
     res.status(200).json({ success: true, config: data });
   } catch (err) {
@@ -175,7 +175,7 @@ exports.updateCreditConfig = async (req, res) => {
   try {
     const { key } = req.params;
     const { credit_cost } = req.body;
-    const { data, error } = await supabase.supabaseAdmin
+    const { data, error } = await supabaseAdmin
       .from('credit_configuration')
       .update({ credit_cost })
       .eq('action_key', key)
@@ -203,7 +203,7 @@ exports.burnCredits = async (req, res, next) => {
 
   try {
     // 1. Fetch current credits
-    const { data: credits, error: fetchError } = await supabase.supabaseAdmin
+    const { data: credits, error: fetchError } = await supabaseAdmin
       .from('student_credits')
       .select('*')
       .eq('student_id', studentId)
@@ -221,7 +221,7 @@ exports.burnCredits = async (req, res, next) => {
     const updatedUsed = credits.used_credits + required_credits;
 
     // 2. Safe update of credits
-    const { data: updatedCredits, error: updateError } = await supabase.supabaseAdmin
+    const { data: updatedCredits, error: updateError } = await supabaseAdmin
       .from('student_credits')
       .update({
         remaining_credits: updatedRemaining,
@@ -235,7 +235,7 @@ exports.burnCredits = async (req, res, next) => {
     if (updateError) throw updateError;
 
     // 3. Create credit_used transaction
-    await supabase.supabaseAdmin
+    await supabaseAdmin
       .from('credit_transactions')
       .insert({
         student_id: studentId,
@@ -275,7 +275,7 @@ exports.burnCredits = async (req, res, next) => {
 // @route   GET /api/superadmin/credit-requests
 exports.getSuperadminCreditRequests = async (req, res, next) => {
   try {
-    const { data: requests, error } = await supabase.supabaseAdmin
+    const { data: requests, error } = await supabaseAdmin
       .from('credit_requests')
       .select('*')
       .order('created_at', { ascending: false });
@@ -289,7 +289,7 @@ exports.getSuperadminCreditRequests = async (req, res, next) => {
         
         // Fetch current remaining credits of the student
         let remaining = 0;
-        const { data: credits } = await supabase.supabaseAdmin
+        const { data: credits } = await supabaseAdmin
           .from('student_credits')
           .select('remaining_credits')
           .eq('student_id', reqItem.student_id)
@@ -325,7 +325,7 @@ exports.approveCreditRequest = async (req, res, next) => {
 
   try {
     // 1. Get the request details
-    const { data: request, error: reqError } = await supabase.supabaseAdmin
+    const { data: request, error: reqError } = await supabaseAdmin
       .from('credit_requests')
       .select('*')
       .eq('id', requestId)
@@ -340,7 +340,7 @@ exports.approveCreditRequest = async (req, res, next) => {
     }
 
     // 2. Fetch or provision student credit record
-    let { data: credits, error: creditError } = await supabase.supabaseAdmin
+    let { data: credits, error: creditError } = await supabaseAdmin
       .from('student_credits')
       .select('*')
       .eq('student_id', request.student_id)
@@ -358,7 +358,7 @@ exports.approveCreditRequest = async (req, res, next) => {
       newUsed = credits.used_credits;
 
       // Update existing record
-      const { error: updateError } = await supabase.supabaseAdmin
+      const { error: updateError } = await supabaseAdmin
         .from('student_credits')
         .update({
           total_credits: newTotal,
@@ -370,7 +370,7 @@ exports.approveCreditRequest = async (req, res, next) => {
       if (updateError) throw updateError;
     } else {
       // Create new record
-      const { error: insertError } = await supabase.supabaseAdmin
+      const { error: insertError } = await supabaseAdmin
         .from('student_credits')
         .insert({
           student_id: request.student_id,
@@ -383,7 +383,7 @@ exports.approveCreditRequest = async (req, res, next) => {
     }
 
     // 3. Mark request as approved
-    const { error: markError } = await supabase.supabaseAdmin
+    const { error: markError } = await supabaseAdmin
       .from('credit_requests')
       .update({
         status: 'approved',
@@ -395,7 +395,7 @@ exports.approveCreditRequest = async (req, res, next) => {
     if (markError) throw markError;
 
     // 4. Record the credit transaction
-    await supabase.supabaseAdmin
+    await supabaseAdmin
       .from('credit_transactions')
       .insert({
         student_id: request.student_id,
@@ -433,7 +433,7 @@ exports.rejectCreditRequest = async (req, res, next) => {
 
   try {
     // 1. Get the request details
-    const { data: request, error: reqError } = await supabase.supabaseAdmin
+    const { data: request, error: reqError } = await supabaseAdmin
       .from('credit_requests')
       .select('*')
       .eq('id', requestId)
@@ -448,7 +448,7 @@ exports.rejectCreditRequest = async (req, res, next) => {
     }
 
     // 2. Mark request as rejected
-    const { error: markError } = await supabase.supabaseAdmin
+    const { error: markError } = await supabaseAdmin
       .from('credit_requests')
       .update({
         status: 'rejected',
@@ -461,7 +461,7 @@ exports.rejectCreditRequest = async (req, res, next) => {
 
     // 3. Optional: add rejected transaction record
     let remaining = 0;
-    const { data: credits } = await supabase.supabaseAdmin
+    const { data: credits } = await supabaseAdmin
       .from('student_credits')
       .select('remaining_credits')
       .eq('student_id', request.student_id)
@@ -470,7 +470,7 @@ exports.rejectCreditRequest = async (req, res, next) => {
       remaining = credits.remaining_credits;
     }
 
-    await supabase.supabaseAdmin
+    await supabaseAdmin
       .from('credit_transactions')
       .insert({
         student_id: request.student_id,
@@ -504,7 +504,7 @@ exports.rejectCreditRequest = async (req, res, next) => {
 // @route   GET /api/superadmin/credit-transactions
 exports.getSuperadminTransactions = async (req, res, next) => {
   try {
-    const { data: transactions, error } = await supabase.supabaseAdmin
+    const { data: transactions, error } = await supabaseAdmin
       .from('credit_transactions')
       .select('*')
       .order('created_at', { ascending: false });

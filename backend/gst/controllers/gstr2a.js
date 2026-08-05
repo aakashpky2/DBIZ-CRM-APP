@@ -16,7 +16,7 @@ exports.getGSTR2ASummary = async (req, res) => {
 exports.getB2BInvoices = async (req, res) => {
     try {
         const { trn } = req.params;
-        const supabase = require('../config/supabase');
+        const { supabase, supabaseAdmin } = require('../../config/supabase');
         const { data, error } = await supabase
             .from('gstr2a_b2b_invoices')
             .select('*')
@@ -34,7 +34,7 @@ exports.getB2BInvoices = async (req, res) => {
 exports.getCDNRNotes = async (req, res) => {
     try {
         const { trn } = req.params;
-        const supabase = require('../config/supabase');
+        const { supabase, supabaseAdmin } = require('../../config/supabase');
         const { data, error } = await supabase
             .from('gstr2a_credit_debit_notes')
             .select('*')
@@ -52,7 +52,7 @@ exports.getCDNRNotes = async (req, res) => {
 exports.getAmendedInvoices = async (req, res) => {
     try {
         const { trn } = req.params;
-        const supabase = require('../config/supabase');
+        const { supabase, supabaseAdmin } = require('../../config/supabase');
         const { data, error } = await supabase
             .from('gstr2a_amended_invoices')
             .select('*')

@@ -1,5 +1,5 @@
 require('dotenv').config();
-const supabase = require('./config/supabase');
+const { supabase, supabaseAdmin } = require('../config/supabase');
 
 async function testSelect() {
     console.log("Fetching latest users from DB...");

@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 exports.protect = async (req, res, next) => {
   let token;
@@ -34,7 +34,7 @@ exports.protect = async (req, res, next) => {
     }
 
     // Fetch profile details from public.users to attach role/permissions
-    const { data: dbUser, error: dbError } = await supabase.supabaseAdmin
+    const { data: dbUser, error: dbError } = await supabaseAdmin
       .from('users')
       .select('id, username, role, status, permissions')
       .eq('id', user.id)

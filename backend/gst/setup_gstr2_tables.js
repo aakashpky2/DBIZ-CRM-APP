@@ -8,7 +8,7 @@
  */
 
 require('dotenv').config();
-const supabase = require('./config/supabase');
+const { supabase, supabaseAdmin } = require('../config/supabase');
 
 const TABLES_SQL = [
     // ── GSTR-2A Tables (Dynamic / Live) ──────────────────────────────────────────

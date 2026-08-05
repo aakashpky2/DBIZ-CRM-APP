@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 // Middleware to restrict access based on user role
 exports.authorize = (...roles) => {
@@ -11,7 +11,7 @@ exports.authorize = (...roles) => {
     }
 
     try {
-      const { data: dbUser, error } = await supabase.supabaseAdmin
+      const { data: dbUser, error } = await supabaseAdmin
         .from('users')
         .select('role')
         .eq('id', req.user.id)

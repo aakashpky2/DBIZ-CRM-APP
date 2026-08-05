@@ -1,5 +1,5 @@
 const gstr2aService = require('../services/gstr2aService');
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 // GET /api/gstr2b/:trn
 exports.getGSTR2BData = async (req, res) => {

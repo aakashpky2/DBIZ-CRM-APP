@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 const mockData = [
     { year: 2026, state: 'Maharashtra', holiday_date: '2026-01-26', holiday_day: 'Monday', description: 'Republic Day', type: 'National' },

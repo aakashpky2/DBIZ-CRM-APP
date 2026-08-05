@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 /**
  * Creates a single notification for a specific user.
@@ -10,7 +10,7 @@ const supabase = require('../config/supabase');
  */
 exports.createNotification = async (userId, title, message, type, redirectUrl = null) => {
   try {
-    const { error } = await supabase.supabaseAdmin
+    const { error } = await supabaseAdmin
       .from('notifications')
       .insert([
         {
@@ -36,7 +36,7 @@ exports.createNotification = async (userId, title, message, type, redirectUrl = 
  */
 exports.notifyAllStudents = async (title, message, type, redirectUrl = null) => {
   try {
-    const { data: students, error: fetchError } = await supabase.supabaseAdmin
+    const { data: students, error: fetchError } = await supabaseAdmin
       .from('users')
       .select('id')
       .eq('role', 'student')
@@ -57,7 +57,7 @@ exports.notifyAllStudents = async (title, message, type, redirectUrl = null) => 
     }));
 
     // Insert in batches if payload is too large, but for now we do a direct insert
-    const { error: insertError } = await supabase.supabaseAdmin
+    const { error: insertError } = await supabaseAdmin
       .from('notifications')
       .insert(payload);
 

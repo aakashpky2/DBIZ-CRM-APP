@@ -1,5 +1,5 @@
 require('dotenv').config();
-const supabase = require('./config/supabase');
+const { supabase, supabaseAdmin } = require('../config/supabase');
 
 const sqlCommands = `
 ALTER TABLE public.business_details DISABLE ROW LEVEL SECURITY;

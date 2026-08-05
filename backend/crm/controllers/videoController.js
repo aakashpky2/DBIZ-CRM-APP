@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 const { createNotification } = require('../utils/notificationService');
 
 // Constants for credit burning
@@ -17,7 +17,7 @@ exports.startVideoSession = async (req, res) => {
 
   try {
     // 1. Check if user is enabled for learning and has credits
-    const { data: userProfile, error: userError } = await supabase.supabaseAdmin
+    const { data: userProfile, error: userError } = await supabaseAdmin
       .from('users')
       .select('learning_service_enabled')
       .eq('id', studentId)
@@ -28,7 +28,7 @@ exports.startVideoSession = async (req, res) => {
       return res.status(403).json({ success: false, message: 'Learning service unavailable. Please contact your manager.' });
     }
 
-    const { data: credits, error: creditError } = await supabase.supabaseAdmin
+    const { data: credits, error: creditError } = await supabaseAdmin
       .from('student_credits')
       .select('remaining_credits')
       .eq('student_id', studentId)
@@ -40,7 +40,7 @@ exports.startVideoSession = async (req, res) => {
     }
 
     // 1.5 Lookup learning video UUID by the youtube string video_id
-    const { data: learningVideo, error: lvError } = await supabase.supabaseAdmin
+    const { data: learningVideo, error: lvError } = await supabaseAdmin
       .from('learning_videos')
       .select('id')
       .eq('video_id', video_id)
@@ -52,7 +52,7 @@ exports.startVideoSession = async (req, res) => {
     }
 
     // 2. Create session
-    const { data: session, error: insertError } = await supabase.supabaseAdmin
+    const { data: session, error: insertError } = await supabaseAdmin
       .from('video_watch_sessions')
       .insert({
         student_id: studentId,
@@ -83,7 +83,7 @@ exports.updateVideoProgress = async (req, res) => {
 
   try {
     // 1. Get session
-    const { data: session, error: sessionError } = await supabase.supabaseAdmin
+    const { data: session, error: sessionError } = await supabaseAdmin
       .from('video_watch_sessions')
       .select('*')
       .eq('id', session_id)
@@ -96,7 +96,7 @@ exports.updateVideoProgress = async (req, res) => {
     }
 
     // 2. Check learning service status and get current credits
-    const { data: userProfile, error: userError } = await supabase.supabaseAdmin
+    const { data: userProfile, error: userError } = await supabaseAdmin
       .from('users')
       .select('learning_service_enabled')
       .eq('id', studentId)
@@ -107,7 +107,7 @@ exports.updateVideoProgress = async (req, res) => {
       return res.status(403).json({ success: false, message: 'Learning service unavailable. Please contact your manager.' });
     }
 
-    const { data: credits, error: creditError } = await supabase.supabaseAdmin
+    const { data: credits, error: creditError } = await supabaseAdmin
       .from('student_credits')
       .select('*')
       .eq('student_id', studentId)
@@ -137,7 +137,7 @@ exports.updateVideoProgress = async (req, res) => {
       remaining_credits -= creditsToBurnNow;
       used_credits += creditsToBurnNow;
 
-      const { error: updateCreditError } = await supabase.supabaseAdmin
+      const { error: updateCreditError } = await supabaseAdmin
         .from('student_credits')
         .update({
           remaining_credits: remaining_credits,
@@ -149,7 +149,7 @@ exports.updateVideoProgress = async (req, res) => {
       if (updateCreditError) throw updateCreditError;
 
       // 4. Record transaction
-      await supabase.supabaseAdmin
+      await supabaseAdmin
         .from('credit_transactions')
         .insert({
           student_id: studentId,
@@ -165,7 +165,7 @@ exports.updateVideoProgress = async (req, res) => {
     // 5. Update session
     const updatedCreditsBurned = previousCreditsBurned + creditsToBurnNow;
     
-    const { data: updatedSession, error: updateSessionError } = await supabase.supabaseAdmin
+    const { data: updatedSession, error: updateSessionError } = await supabaseAdmin
       .from('video_watch_sessions')
       .update({
         watch_seconds: totalWatchedSeconds,
@@ -205,7 +205,7 @@ exports.endVideoSession = async (req, res) => {
       status = 'completed';
     }
 
-    const { data: session, error: updateError } = await supabase.supabaseAdmin
+    const { data: session, error: updateError } = await supabaseAdmin
       .from('video_watch_sessions')
       .update({
         status: status,
@@ -240,7 +240,7 @@ exports.endVideoSession = async (req, res) => {
 exports.getWatchHistory = async (req, res) => {
   const studentId = req.user.id;
   try {
-    const { data: sessions, error } = await supabase.supabaseAdmin
+    const { data: sessions, error } = await supabaseAdmin
       .from('video_watch_sessions')
       .select('*, learning_videos(title)')
       .eq('student_id', studentId)
@@ -262,7 +262,7 @@ exports.getMonitoringSessions = async (req, res) => {
   const userId = req.user.id;
   
   try {
-    let query = supabase.supabaseAdmin
+    let query = supabaseAdmin
       .from('video_watch_sessions')
       .select(`
         *,
@@ -286,7 +286,7 @@ exports.getMonitoringSessions = async (req, res) => {
     let filteredSessions = sessions;
     if (role !== 'superadmin' && role !== 'admin') {
       // Fetch all users under this manager/institute (simplified check)
-      const { data: validUsers } = await supabase.supabaseAdmin
+      const { data: validUsers } = await supabaseAdmin
         .from('users')
         .select('id')
         .eq('parent_id', userId);

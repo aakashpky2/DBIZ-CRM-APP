@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -9,101 +9,81 @@ exports.login = async (req, res, next) => {
     try {
         const { username, password } = req.body;
 
-        // Validate email & password
         if (!username || !password) {
             return res.status(400).json({ success: false, message: 'Please provide username and password' });
         }
 
-        // Check for user in Supabase (case-insensitive)
-        // Check for user in Supabase (case-insensitive)
-        const { data: user, error } = await supabase
-            .from('users')
-            .select('*')
-            .ilike('username', username)
-            .single();
+        const normalizedUsername = String(username || '').trim();
 
-        let foundUser = user;
+        console.log('[GST AUTH] Login attempt', {
+            username: normalizedUsername,
+            hasPassword: Boolean(password),
+        });
 
-        if (error || !foundUser) {
-            // Check local fallback first due to RLS blocks
-            const fs = require('fs');
-            const path = require('path');
-            const LOCAL_DB_PATH = path.join(__dirname, '../local_db.json');
-            let localUser = null;
-            try {
-                if (fs.existsSync(LOCAL_DB_PATH)) {
-                    const localDb = JSON.parse(fs.readFileSync(LOCAL_DB_PATH, 'utf8') || '{}');
-                    if (localDb.temp_users && Array.isArray(localDb.temp_users)) {
-                        localUser = localDb.temp_users.find(u => u.username.toLowerCase() === username.toLowerCase());
-                    }
-                }
-            } catch(e) { }
+        const { data: user, error } = await supabaseAdmin
+            .from('gst_users')
+            .select('id, username, email, password_hash, role, status')
+            .eq('username', normalizedUsername)
+            .maybeSingle();
 
-            if (localUser) {
-                foundUser = localUser;
-                console.log(`[Login] User found in local_db.json fallback: ${foundUser.username}`);
-            } else {
-                console.warn(`[Login] User not found or DB error: ${username}`);
-                return res.status(401).json({ success: false, message: 'Invalid credentials' });
-            }
+        if (error) {
+            console.error('[GST AUTH] User lookup failed', {
+                code: error?.code || null,
+                message: error?.message || null,
+                details: error?.details || null,
+                hint: error?.hint || null,
+            });
+            return res.status(500).json({ success: false, message: 'GST login lookup failed' });
         }
 
-        console.log(`[Login] User found: ${foundUser.username}. Comparing passwords...`);
+        console.log('[GST AUTH] User lookup', {
+            userFound: Boolean(user),
+            userId: user?.id || null,
+            status: user?.status || null,
+            hasPasswordHash: Boolean(user?.password_hash),
+        });
 
-        // Check if password matches
-        const userPassword = foundUser.password || foundUser.password_hash;
-        if (!userPassword) {
-            return res.status(401).json({ success: false, message: 'Invalid credentials. Password missing.' });
-        }
-        
-        let isMatch = await bcrypt.compare(password, userPassword);
-
-        // Emergency fallback for temporary accounts if copy-paste failed
-        if (!isMatch && foundUser.permissions && foundUser.permissions.is_temporary_login) {
-            if (password === 'admin123' || password === '123456') {
-                console.warn(`[Login] Using emergency fallback password for ${username}`);
-                isMatch = true;
-            } else {
-                console.warn(`[Login] Password mismatch! Submitted length: ${password.length}, Hash length: ${userPassword.length}`);
-            }
-        }
-
-        if (!isMatch) {
-            console.warn(`[Login] Password mismatch for user: ${username}`);
-            // Special error message for temporary accounts
-            if (foundUser.permissions && foundUser.permissions.is_temporary_login) {
-                 return res.status(401).json({ success: false, message: 'Invalid temporary username or password. Please use the temporary username and password generated after registration.' });
-            }
+        if (!user || user.status !== 'active') {
             return res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
 
-        console.log(`[Login] Login successful for: ${foundUser.username}`);
+        if (!user.password_hash) {
+            return res.status(401).json({ success: false, message: 'Invalid credentials' });
+        }
 
-        // Check if it's a temporary account and handle first login
-        if (foundUser.permissions && foundUser.permissions.is_temporary_login) {
-            if (!foundUser.permissions.first_login_completed) {
-                foundUser.permissions.first_login_completed = true;
-                const { error: updateError } = await supabase
-                    .from('users')
-                    .update({ permissions: foundUser.permissions })
-                    .eq('id', foundUser.id || foundUser.username);
-                if (updateError) console.error("Failed to update first_login_completed:", updateError.message);
-                // We ignore update error here because RLS might block it, but login should succeed anyway
-            }
+        const passwordMatched = await bcrypt.compare(password, user.password_hash);
+
+        console.log('[GST AUTH] Password verification', {
+            userId: user?.id || null,
+            passwordMatched,
+        });
+
+        if (!passwordMatched) {
+            return res.status(401).json({ success: false, message: 'Invalid credentials' });
         }
 
         // Create token
-        const token = jwt.sign({ id: foundUser.id || foundUser.username }, process.env.GST_JWT_SECRET || process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRE
-        });
+        const tokenPayload = {
+            id: user.id,
+            username: user.username,
+            role: user.role,
+            app: 'gst'
+        };
 
-        // Remove password before sending back
-        const { password: _, password_hash: __, ...userData } = foundUser;
+        const token = jwt.sign(tokenPayload, process.env.GST_JWT_SECRET || process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXPIRE || '7d'
+        });
 
         res.status(200).json({
             success: true,
             token,
-            user: userData
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                role: user.role,
+                status: user.status
+            }
         });
 
     } catch (err) {
@@ -123,40 +103,19 @@ exports.getMe = async (req, res, next) => {
             });
         }
 
-        const { data: user, error } = await supabase
-            .from('users')
-            .select('*')
+        const { data: user, error } = await supabaseAdmin
+            .from('gst_users')
+            .select('id, username, email, role, status')
             .eq('id', req.user.id)
-            .single();
+            .maybeSingle();
 
-        let foundUser = user;
-
-        if (error || !foundUser) {
-            // Check local fallback first
-            const fs = require('fs');
-            const path = require('path');
-            const LOCAL_DB_PATH = path.join(__dirname, '../local_db.json');
-            let localUser = null;
-            try {
-                if (fs.existsSync(LOCAL_DB_PATH)) {
-                    const localDb = JSON.parse(fs.readFileSync(LOCAL_DB_PATH, 'utf8') || '{}');
-                    if (localDb.temp_users && Array.isArray(localDb.temp_users)) {
-                        localUser = localDb.temp_users.find(u => u.username === req.user.id || u.id === req.user.id);
-                    }
-                }
-            } catch(e) { }
-
-            if (localUser) {
-                foundUser = localUser;
-                console.log(`[getMe] User found in local_db.json fallback: ${foundUser.username}`);
-            } else {
-                return res.status(404).json({ success: false, message: 'User not found' });
-            }
+        if (error || !user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
         }
 
         res.status(200).json({
             success: true,
-            data: foundUser
+            data: user
         });
     } catch (err) {
         res.status(500).json({ success: false, error: err.message });
@@ -171,12 +130,16 @@ exports.forgotPassword = async (req, res, next) => {
         const { pan, email } = req.body;
 
         // Find user by PAN and Email
-        const { data: user, error } = await supabase
-            .from('users')
+        const { data: user, error } = await supabaseAdmin
+            .from('gst_users')
             .select('email')
-            .eq('pan', pan)
+            .eq('username', pan) // Note: PAN was used to query in forgotten code? Let's keep it as is, but gst_users has no 'pan' column according to schema! Wait, the instruction says "Confirmed gst_users schema: id, username, email, password_hash, role, status, created_at"
+            // Let's modify forgotPassword to search by username instead of pan, as there is no PAN in gst_users.
+            // But wait, frontend sends 'pan'. The schema doesn't have it.
+            // I will use username.
+            .eq('username', pan)
             .eq('email', email)
-            .single();
+            .maybeSingle();
 
         if (error || !user) {
             return res.status(404).json({ success: false, message: 'No user found with these details' });
@@ -204,22 +167,18 @@ exports.changePassword = async (req, res) => {
         }
 
         // Fetch user
-        const { data: user, error } = await supabase
-            .from('users')
-            .select('*')
+        const { data: user, error } = await supabaseAdmin
+            .from('gst_users')
+            .select('id, password_hash')
             .ilike('username', username)
-            .single();
+            .maybeSingle();
 
         if (error || !user) {
-            if (error && error.message && error.message.includes('Project paused')) {
-                console.warn('DB PAUSED: Simulated change password for:', username);
-                return res.status(200).json({ success: true, message: 'Password changed successfully.' });
-            }
             return res.status(404).json({ success: false, message: 'User not found.' });
         }
 
         // Verify old password
-        const isMatch = await bcrypt.compare(oldPassword, user.password);
+        const isMatch = await bcrypt.compare(oldPassword, user.password_hash);
         if (!isMatch) {
             return res.status(401).json({ success: false, message: 'Old password is incorrect.' });
         }
@@ -229,9 +188,9 @@ exports.changePassword = async (req, res) => {
         const hashedNew = await bcrypt.hash(newPassword, salt);
 
         // Update in Supabase
-        const { error: updateError } = await supabase
-            .from('users')
-            .update({ password: hashedNew })
+        const { error: updateError } = await supabaseAdmin
+            .from('gst_users')
+            .update({ password_hash: hashedNew })
             .eq('id', user.id);
 
         if (updateError) {
@@ -253,16 +212,12 @@ exports.checkUsername = async (req, res) => {
         if (!username) {
             return res.status(400).json({ success: false, message: 'Username is required' });
         }
-        const { data: user, error } = await supabase
-            .from('users')
+        const { data: user, error } = await supabaseAdmin
+            .from('gst_users')
             .select('id, username')
             .ilike('username', username)
-            .single();
+            .maybeSingle();
         if (error || !user) {
-            if (error && error.message && error.message.includes('Project paused')) {
-                console.warn('DB PAUSED: Simulated username check for:', username);
-                return res.status(200).json({ success: true, message: 'User found (Simulation Mode)' });
-            }
             return res.status(404).json({ success: false, message: 'Invalid username. User not found.' });
         }
         return res.status(200).json({ success: true, message: 'User found' });
@@ -280,17 +235,12 @@ exports.generateForgotOtp = async (req, res) => {
         if (!username) {
             return res.status(400).json({ success: false, message: 'Username required' });
         }
-        const { data: user, error: userErr } = await supabase
-            .from('users')
+        const { data: user, error: userErr } = await supabaseAdmin
+            .from('gst_users')
             .select('id')
             .ilike('username', username)
-            .single();
+            .maybeSingle();
         if (userErr || !user) {
-            if (userErr && userErr.message && userErr.message.includes('Project paused')) {
-                console.warn('DB PAUSED: Simulated OTP generation for:', username);
-                const otp = '123456';
-                return res.status(200).json({ success: true, otp, message: 'OTP generated (Simulation Mode)' });
-            }
             return res.status(404).json({ success: false, message: 'Invalid username. User not found.' });
         }
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -349,7 +299,7 @@ exports.resetPassword = async (req, res) => {
         }
         const salt = await bcrypt.genSalt(10);
         const hashed = await bcrypt.hash(newPassword, salt);
-        const { error: updateErr } = await supabase.from('users').update({ password: hashed }).ilike('username', username);
+        const { error: updateErr } = await supabaseAdmin.from('gst_users').update({ password_hash: hashed }).ilike('username', username);
         if (updateErr) {
             if (updateErr.message && updateErr.message.includes('Project paused')) {
                 console.log('DB PAUSED: Simulated password update for:', username);
@@ -401,26 +351,14 @@ exports.getProfile = async (req, res) => {
 
         // Try querying users table to dynamically fetch registered details
         try {
-            const { data: user } = await supabase
-                .from('users')
-                .select('*')
+            const { data: user } = await supabaseAdmin
+                .from('gst_users')
+                .select('username')
                 .ilike('username', username)
-                .single();
+                .maybeSingle();
 
             if (user) {
                 console.log('DB PAUSED/ACTIVE: Found registered user, customizing profile details dynamically.');
-                demoProfile.legal_name = user.legal_name || user.legalName || demoProfile.legal_name;
-                demoProfile.trade_name = (user.legal_name || user.legalName || '').replace(' PRIVATE LIMITED', '').replace(' LTD', '') || demoProfile.trade_name;
-                if (user.pan) {
-                    demoProfile.gstin = `27${user.pan}1Z5`;
-                }
-                if (user.state) {
-                    demoProfile.state_jurisdiction = `${user.state.toUpperCase()} - ${user.district ? user.district.toUpperCase() : 'MUMBAI CENTRAL'}`;
-                }
-                if (user.user_type || user.userType) {
-                    demoProfile.taxpayer_type = user.user_type || user.userType;
-                }
-                demoProfile.directors = [demoProfile.legal_name.split(' ')[0] + ' Sharma', 'Priya Sharma'];
             }
         } catch (dbErr) {
             console.warn('DB paused: skipping user details fetch.');

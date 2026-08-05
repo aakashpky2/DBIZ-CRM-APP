@@ -1,8 +1,8 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 const logAudit = async (userId, role, actionType, moduleName, burned, added, balanceAfter, status = 'success') => {
   try {
-    await supabase.supabaseAdmin.from('audit_logs').insert({
+    await supabaseAdmin.from('audit_logs').insert({
       user_id: userId,
       role: role || 'student',
       action_type: actionType,
@@ -18,7 +18,7 @@ const logAudit = async (userId, role, actionType, moduleName, burned, added, bal
 };
 
 const getWallet = async (userId) => {
-  const { data } = await supabase.supabaseAdmin
+  const { data } = await supabaseAdmin
     .from('student_credits')
     .select('*')
     .eq('student_id', userId)
@@ -36,7 +36,7 @@ const updateWallet = async (userId, burned) => {
   const newUsed = wallet.used_credits + burned;
   const newRemaining = wallet.remaining_credits - burned;
   
-  const { data: updated, error } = await supabase.supabaseAdmin
+  const { data: updated, error } = await supabaseAdmin
     .from('student_credits')
     .update({ used_credits: newUsed, remaining_credits: newRemaining })
     .eq('student_id', userId)
@@ -53,14 +53,14 @@ exports.startSession = async (req, res, next) => {
   
   try {
     // Complete previous active sessions
-    await supabase.supabaseAdmin
+    await supabaseAdmin
       .from('learning_sessions')
       .update({ status: 'completed' })
       .eq('user_id', userId)
       .eq('status', 'active');
       
     // Start new session
-    const { data: session, error } = await supabase.supabaseAdmin
+    const { data: session, error } = await supabaseAdmin
       .from('learning_sessions')
       .insert({
         user_id: userId,
@@ -87,7 +87,7 @@ exports.sessionPulse = async (req, res, next) => {
   const { sessionId, activeDurationSeconds } = req.body; // frontend reports duration
   
   try {
-    const { data: session, error } = await supabase.supabaseAdmin
+    const { data: session, error } = await supabaseAdmin
       .from('learning_sessions')
       .select('*')
       .eq('id', sessionId)
@@ -129,7 +129,7 @@ exports.sessionPulse = async (req, res, next) => {
         // Deduct
         const updatedWallet = await updateWallet(userId, additionalBurn);
         
-        await supabase.supabaseAdmin
+        await supabaseAdmin
           .from('learning_sessions')
           .update({
             active_duration_seconds: newDuration,
@@ -141,7 +141,7 @@ exports.sessionPulse = async (req, res, next) => {
         await logAudit(userId, req.user.role, 'time_deduction', session.module_name, additionalBurn, 0, updatedWallet.remaining_credits);
       } else {
         // Insufficient credits, force pause
-        await supabase.supabaseAdmin
+        await supabaseAdmin
           .from('learning_sessions')
           .update({
             active_duration_seconds: newDuration,
@@ -154,7 +154,7 @@ exports.sessionPulse = async (req, res, next) => {
       }
     } else {
       // Just update time
-      await supabase.supabaseAdmin
+      await supabaseAdmin
         .from('learning_sessions')
         .update({
           active_duration_seconds: newDuration,
@@ -174,7 +174,7 @@ exports.premiumAction = async (req, res, next) => {
   const { actionKey, moduleName } = req.body;
   
   try {
-    const { data: config } = await supabase.supabaseAdmin
+    const { data: config } = await supabaseAdmin
       .from('credit_configuration')
       .select('credit_cost')
       .eq('action_key', actionKey)

@@ -1,4 +1,4 @@
-const supabaseAdmin = require('../config/supabaseAdmin');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 const { createNotification } = require('../utils/notificationService');
 
 exports.getUsers = async (req, res) => {

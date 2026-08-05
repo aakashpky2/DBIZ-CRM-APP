@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 const gstr2aService = require('../services/gstr2aService');
 const gstr2bService = require('../services/gstr2bService');
 const fs = require('fs');

@@ -1,10 +1,10 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 // @desc    Get all notifications for logged-in user
 // @route   GET /api/notifications
 exports.getNotifications = async (req, res, next) => {
   try {
-    const { data, error } = await supabase.supabaseAdmin
+    const { data, error } = await supabaseAdmin
       .from('notifications')
       .select('*')
       .eq('user_id', req.user.id)
@@ -29,7 +29,7 @@ exports.markAsRead = async (req, res, next) => {
   try {
     const { id } = req.params;
     
-    const { data, error } = await supabase.supabaseAdmin
+    const { data, error } = await supabaseAdmin
       .from('notifications')
       .update({ is_read: true })
       .eq('id', id)
@@ -51,7 +51,7 @@ exports.markAsRead = async (req, res, next) => {
 // @route   PUT /api/notifications/read-all
 exports.markAllAsRead = async (req, res, next) => {
   try {
-    const { data, error } = await supabase.supabaseAdmin
+    const { data, error } = await supabaseAdmin
       .from('notifications')
       .update({ is_read: true })
       .eq('user_id', req.user.id)

@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 // Ensure a helper function that can execute arbitrary SQL via RPC
 async function ensureExecSqlFunction() {

@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 // Official GST portal constitution options (fallback if table is empty)
 const CONSTITUTION_FALLBACK = [

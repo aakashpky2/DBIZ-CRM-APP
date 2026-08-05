@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 const mockTaxpayers = {
     '27AAAAA0000A1Z5': {

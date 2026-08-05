@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const supabase = require('./config/supabase');
+const { supabase, supabaseAdmin } = require('../config/supabase');
 
 async function seed() {
     try {

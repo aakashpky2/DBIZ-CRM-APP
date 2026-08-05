@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 // Map table name to unique keys for manual upsert
 const getUniqueKeys = (tableName) => {

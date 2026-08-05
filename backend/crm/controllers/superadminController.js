@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 // @desc    Super Admin Login
 // @route   POST /api/superadmin/login
@@ -34,7 +34,7 @@ exports.superadminLogin = async (req, res, next) => {
     const { user, session } = authData;
 
     // 2. Fetch profile from public.users to strictly validate role and status
-    const { data: dbUser, error: dbError } = await supabase.supabaseAdmin
+    const { data: dbUser, error: dbError } = await supabaseAdmin
       .from('users')
       .select('*')
       .eq('id', user.id)

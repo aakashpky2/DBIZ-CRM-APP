@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 
 /**
  * Auto-generate GSTR-2B records from GSTR-1 filings.

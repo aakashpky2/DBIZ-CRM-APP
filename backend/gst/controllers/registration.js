@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 const bcrypt = require('bcryptjs');
 
 
@@ -18,8 +18,8 @@ exports.registerStep1 = async (req, res, next) => {
         } = req.body;
 
         // Check if user already exists
-        const { data: existingUser, error: findError } = await supabase
-            .from('users')
+        const { data: existingUser, error: findError } = await supabaseAdmin
+            .from('gst_users')
             .select('email')
             .eq('email', email);
 
@@ -64,17 +64,35 @@ exports.verifyOtp = async (req, res, next) => {
             // We assume req.user is set by auth middleware, if not we need it from the request body or token
             const userId = req.user ? req.user.id : (req.body.userId || '00000000-0000-0000-0000-000000000000');
 
+            const dbPayload = { 
+                trn: finalTrn,
+                email: email || null, 
+                mobile: mobile || null, 
+                legal_name: legalName || null, 
+                pan: pan || null, 
+                state_name: state || null, 
+                district: district || null,
+                updated_at: new Date().toISOString()
+            };
+
             // Save the registration base data immediately to business_details and deduct 'reg_started' credit
-            const { error: dbError } = await supabase
+            const { error: rpcError } = await supabase
                 .rpc('atomic_save_business_details_and_burn', {
                     p_user_id: userId,
                     p_trn: finalTrn,
-                    p_payload: { email, mobile, legalName, pan, stateName: state, district },
+                    p_payload: dbPayload,
                     p_action_key: 'reg_started'
                 });
 
+            const dbError = rpcError;
+
             if (dbError) {
-                console.error("Failed to persist registration to business_details:", dbError.message);
+                console.error("[GST REGISTRATION] business_details persistence failed:", {
+                    code: dbError?.code || null,
+                    message: dbError?.message || null,
+                    details: dbError?.details || null,
+                    hint: dbError?.hint || null,
+                });
                 
                 if (dbError.message && dbError.message.includes('INSUFFICIENT_CREDITS')) {
                     return res.status(402).json({ success: false, message: 'Insufficient credits to start a new Registration.' });
@@ -95,14 +113,19 @@ exports.verifyOtp = async (req, res, next) => {
             
             console.log("Registration Part A saved successfully for TRN:", finalTrn);
 
-            // Attempt to insert into users table (optional, depending on DB rules)
-            const { error: userError } = await supabase
-                .from('users')
+            // Attempt to insert into gst_users table (optional, depending on DB rules)
+            const tempPassword = Math.random().toString(36).slice(-8);
+            const salt = await bcrypt.genSalt(10);
+            const password_hash = await bcrypt.hash(tempPassword, salt);
+            
+            const { error: userError } = await supabaseAdmin
+                .from('gst_users')
                 .insert([{
                     email: email,
-                    pan: pan || null,
                     username: finalTrn, // Uses TRN as a temp username for now
-                    password: Math.random().toString(36).slice(-8)
+                    password_hash: password_hash,
+                    role: 'taxpayer',
+                    status: 'active'
                 }]);
             
             if (userError) {
@@ -257,35 +280,18 @@ exports.completeRegistration = async (req, res, next) => {
         const currentYear = new Date().getFullYear();
         const financialYear = `${currentYear}-${(currentYear + 1).toString().slice(2)}`;
 
-        // Construct User Permissions (metadata)
-        const permissions = {
-            is_temporary_login: true,
-            first_login_completed: false,
-            pan: gstinData.pan, // Guaranteed valid PAN
-            user_type: 'Taxpayer',
-            state: userState,
-            state_code: gstinData.stateCode,
-            legal_name: actualLegalName,
-            mobile: userMobile,
-            trn: trn,
-            gstin: gstinData.gstin,
-            entity_code: gstinData.entityCode,
-            checksum: gstinData.checksum,
-            financial_year: financialYear,
-            registration_date: new Date().toISOString()
-        };
 
-        // Insert/Update the user in the users table
-        const { data: newUser, error: userError } = await supabase
-            .from('users')
+
+        // Insert/Update the user in the gst_users table
+        const { data: newUser, error: userError } = await supabaseAdmin
+            .from('gst_users')
             .upsert(
                 {
                     username: tempUsername,
                     password_hash: tempPasswordHash,
                     email: userEmail,
-                    role: 'student',
-                    status: 'active',
-                    permissions: permissions
+                    role: 'taxpayer',
+                    status: 'active'
                 },
                 { onConflict: 'username' }
             )
@@ -307,13 +313,12 @@ exports.completeRegistration = async (req, res, next) => {
                         localDb = JSON.parse(fs.readFileSync(LOCAL_DB_PATH, 'utf8') || '{}');
                     }
                     if (!localDb['temp_users']) localDb['temp_users'] = [];
-                    localDb['temp_users'].push({
+                    localDb.temp_users.push({
                         username: tempUsername,
-                        password_hash: tempPasswordHash,
+                        password: tempPassword,
                         email: userEmail,
-                        role: 'student',
-                        status: 'active',
-                        permissions: permissions
+                        role: 'taxpayer',
+                        status: 'active'
                     });
                     fs.writeFileSync(LOCAL_DB_PATH, JSON.stringify(localDb, null, 2), 'utf8');
                 } catch (e) {
@@ -341,8 +346,8 @@ exports.completeRegistration = async (req, res, next) => {
         }
 
         // Delete the temporary TRN user so only the new credentials work
-        await supabase
-            .from('users')
+        await supabaseAdmin
+            .from('gst_users')
             .delete()
             .eq('username', trn);
 

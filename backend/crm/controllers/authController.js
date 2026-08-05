@@ -1,4 +1,4 @@
-const supabase = require('../config/supabase');
+const { supabase, supabaseAdmin } = require('../../config/supabase');
 const { createNotification } = require('../utils/notificationService');
 
 // @desc    Login user
@@ -7,14 +7,7 @@ exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
   console.log('================ LOGIN API HIT ================');
-  console.log('[CRM AUTH] Login attempt', {
-    email,
-    crmUrlConfigured: Boolean(process.env.CRM_SUPABASE_URL),
-    crmAnonKeyConfigured: Boolean(process.env.CRM_SUPABASE_ANON_KEY),
-    crmServiceKeyConfigured: Boolean(
-      process.env.CRM_SUPABASE_SERVICE_ROLE_KEY
-    ),
-  });
+  console.log('[CRM AUTH] Login attempt', { email });
 
   if (!email || !password) {
     return res.status(400).json({
@@ -58,7 +51,7 @@ exports.login = async (req, res, next) => {
     });
 
     const { data: profile, error: profileError } =
-      await supabase.supabaseAdmin
+      await supabaseAdmin
         .from('users')
         .select('*')
         .eq('id', user.id)
@@ -170,7 +163,7 @@ exports.updateProfileImage = async (req, res, next) => {
   try {
     const { profile_image } = req.body;
     
-    const { data, error } = await supabase.supabaseAdmin
+    const { data, error } = await supabaseAdmin
       .from('users')
       .update({ profile_image })
       .eq('id', req.user.id)
@@ -206,7 +199,7 @@ exports.updateProfile = async (req, res, next) => {
   try {
     const { full_name, mobile_number, institute } = req.body;
     
-    const { data, error } = await supabase.supabaseAdmin
+    const { data, error } = await supabaseAdmin
       .from('users')
       .update({ full_name, mobile_number, institute })
       .eq('id', req.user.id)
