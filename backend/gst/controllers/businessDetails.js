@@ -42,44 +42,20 @@ exports.saveBusinessDetails = async (req, res) => {
             trn = 'GUEST-' + (pan || 'UNKNOWN') + '-' + Date.now();
         }
 
-        // Map registration values strictly to actual DB columns
-        const dbPayload = {
-            trn: trn,
-            legal_name: legalName || null,
-            pan: pan || null,
-            state_name: stateName || null,
-            trade_name: tradeName || null,
-            additional_trade: additionalTrade || null,
-            constitution: constitution || null,
-            district: district || null,
-            casual_taxable: casualTaxable || false,
-            composition: composition || false,
-            rule_14a: rule14A || null,
-            reason: reason || null,
-            commencement_date: commencementDate || null,
-            liability_date: liabilityDate || null,
-            updated_at: new Date().toISOString()
-        };
-
         // We assume req.user is set by auth middleware, if not we need it from the request body or token
         const userId = req.user ? req.user.id : (req.body.userId || '00000000-0000-0000-0000-000000000000');
 
-        // Save back using ATOMIC RPC to handle credit deduction
+        // Save back using ATOMIC RPC to handle credit deduction and data insertion in one transaction
         const { data: rpcData, error } = await supabase
             .rpc('atomic_save_business_details_and_burn', {
                 p_user_id: userId,
                 p_trn: trn,
-                p_payload: dbPayload,
+                p_payload: req.body,
                 p_action_key: 'reg_business_details'
             });
 
         if (error) {
-            console.error('[GST REGISTRATION] business_details persistence failed:', {
-                code: error?.code || null,
-                message: error?.message || null,
-                details: error?.details || null,
-                hint: error?.hint || null,
-            });
+            console.error('Supabase error saving business details:', error);
             
             if (error.message && error.message.includes('INSUFFICIENT_CREDITS')) {
                 return res.status(402).json({ success: false, message: 'Insufficient credits to perform this action.' });
@@ -120,7 +96,7 @@ exports.saveBusinessDetails = async (req, res) => {
         res.status(200).json({
             success: true,
             message: 'Business Details saved successfully.',
-            data: rpcData || dbPayload
+            data: data?.[0] || null
         });
     } catch (err) {
         console.error('Save Business Details Error:', err.message);
