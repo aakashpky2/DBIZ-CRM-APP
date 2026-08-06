@@ -28,36 +28,17 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(compression());
 
-const corsOptions = {
-  origin(origin, callback) {
-    const allowedList = [
-      'http://localhost:5173',
-      'http://localhost:5174',
-      'http://localhost:5175',
-      'http://localhost:5000',
-      'https://lightseagreen-clam-943131.hostingersite.com',
-      'https://app.dbiz.online',
-      process.env.FRONTEND_URL
-    ];
-    
-    const allowed = allowedList
-      .filter(Boolean)
-      .map(v => v.replace(/\/$/, ''));
-      
-    if (!origin) {
-      return callback(null, true);
-    }
-    
-    const normalizedOrigin = origin.replace(/\/$/, '');
-    if (allowed.includes(normalizedOrigin)) {
-      return callback(null, true);
-    }
-    
-    console.warn('[CORS] Blocked origin:', normalizedOrigin);
-    return callback(new Error('CORS blocked origin'));
-  },
-  credentials: true
-};
+const allowedList = [
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:5175',
+  'http://localhost:5000',
+  'https://lightseagreen-clam-943131.hostingersite.com',
+  'https://app.dbiz.online',
+  'https://training.acoundz360.com',
+  'https://www.training.acoundz360.com',
+  process.env.FRONTEND_URL
+];
 
 app.use('/api', cors(corsOptions));
 
