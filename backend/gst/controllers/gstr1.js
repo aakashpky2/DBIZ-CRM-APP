@@ -28,13 +28,46 @@ exports.getRecords = async (req, res) => {
             return res.status(400).json({ success: false, message: 'TableName and TRN required' });
         }
 
-        const { data, error } = await supabase
-            .from(tableName)
+        let actualTableName = tableName;
+        if (tableName === 'gstr1_eco') {
+            actualTableName = 'gstr1_eco_supplies';
+        }
+
+        let resolvedTrn = trn;
+
+        // Check if the provided "trn" is actually a username (e.g. gst1234)
+        const { data: user, error: userError } = await supabaseAdmin
+            .from('gst_users')
             .select('*')
-            .eq('trn', trn)
+            .eq('username', trn)
+            .maybeSingle();
+
+        if (user) {
+            // It is a GST user. Since there's no username-to-TRN relationship in the schema, do not guess.
+            return res.status(404).json({
+                success: false,
+                message: "No TRN is linked to this GST user"
+            });
+        }
+
+        const { data, error } = await supabase
+            .from(actualTableName)
+            .select('*')
+            .eq('trn', resolvedTrn)
             .order('created_at', { ascending: false });
 
-        if (error) throw error;
+        if (error) {
+            console.error('[GSTR1 ECO] Fetch failed', {
+                requestedIdentifier: trn,
+                resolvedTrn: resolvedTrn || null,
+                table: actualTableName,
+                code: error?.code || null,
+                message: error?.message || null,
+                details: error?.details || null,
+                hint: error?.hint || null,
+            });
+            throw error;
+        }
 
         res.status(200).json({ success: true, data: data || [] });
     } catch (error) {

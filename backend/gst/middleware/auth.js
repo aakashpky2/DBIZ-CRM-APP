@@ -27,7 +27,7 @@ exports.protect = async (req, res, next) => {
 
     const { data: user, error } = await supabaseAdmin
       .from('gst_users')
-      .select('id, username, email, role, status')
+      .select('id, username, email, role, status, trn')
       .eq('id', decoded.id)
       .maybeSingle();
 

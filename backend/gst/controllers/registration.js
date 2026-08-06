@@ -211,7 +211,7 @@ exports.completeRegistration = async (req, res, next) => {
         // Fetch business details to associate with the user account
         const { data: bizData, error: bizError } = await supabase
             .from('business_details')
-            .select('email, mobile, legal_name, pan, state_name, state')
+            .select('email, mobile, legal_name, pan, state_name, state, trn')
             .eq('trn', trn)
             .single();
 
@@ -278,23 +278,64 @@ exports.completeRegistration = async (req, res, next) => {
             registration_date: new Date().toISOString()
         };
 
+        const finalTrn = bizData?.trn ? String(bizData.trn).trim() : '';
+
+        if (!finalTrn) {
+            return res.status(500).json({
+                success: false,
+                message: 'GST registration completed without a valid TRN. Ensure business details are saved first.',
+            });
+        }
+
+        // Security check: ensure the provided PAN matches the business_details PAN
+        if (pan && bizData.pan && pan.toUpperCase() !== bizData.pan.toUpperCase()) {
+            return res.status(403).json({
+                success: false,
+                message: 'PAN mismatch. Unauthorized attempt to complete registration for this TRN.',
+            });
+        }
+
+        // Check if username already exists to enforce TRN constraints
+        const { data: existingUser } = await supabaseAdmin
+            .from('gst_users')
+            .select('trn')
+            .eq('username', tempUsername)
+            .maybeSingle();
+
+        if (existingUser) {
+            if (existingUser.trn && existingUser.trn !== finalTrn) {
+                return res.status(409).json({
+                    success: false,
+                    message: 'Username conflict with a different TRN'
+                });
+            }
+        }
+
         // Insert/Update the user in the gst_users table
         const { data: newUser, error: userError } = await supabaseAdmin
             .from('gst_users')
             .upsert(
                 {
                     username: tempUsername,
-                    password_hash: tempPasswordHash,
                     email: userEmail,
+                    password_hash: tempPasswordHash,
                     role: 'taxpayer',
-                    status: 'active'
+                    status: 'active',
+                    trn: finalTrn
                 },
                 { onConflict: 'username' }
             )
             .select();
 
         if (userError) {
-            console.error("Failed to create final credentials:", userError);
+            console.error('[GST REGISTRATION] GST account creation failed', {
+                username: tempUsername,
+                trn: finalTrn,
+                code: userError?.code || null,
+                message: userError?.message || null,
+                details: userError?.details || null,
+                hint: userError?.hint || null,
+            });
             return res.status(500).json({ 
                 success: false, 
                 message: 'Database Error: Could not create credentials. (RLS or permissions issue)',

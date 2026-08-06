@@ -20,12 +20,20 @@ const Login = () => {
             const trimmedPassword = password.trim();
             const response = await api.post('/auth/login', { username: trimmedUsername, password: trimmedPassword });
             const { token, user } = response.data;
-            const actualTrn = user?.trn || trimmedUsername;
 
             // Store token and user details in localStorage
             localStorage.setItem('gst_token', token);
-            localStorage.setItem('gst_trn', actualTrn);
-            localStorage.setItem('trn', actualTrn);
+            localStorage.setItem('gst_user', JSON.stringify(user));
+            
+            if (user?.trn) {
+                localStorage.setItem('gst_trn', user.trn);
+                localStorage.setItem('trn', user.trn);
+            } else {
+                localStorage.removeItem('gst_trn');
+                localStorage.removeItem('trn');
+                alert("No GST registration is linked to this account.");
+            }
+
             localStorage.setItem('username', user?.username || trimmedUsername);
             localStorage.setItem('gst_legal_name', user?.legal_name || '');
             localStorage.setItem('gst_pan', user?.pan || '');

@@ -24,7 +24,7 @@ exports.login = async (req, res) => {
 
     const { data: user, error } = await supabaseAdmin
       .from('gst_users')
-      .select('id, username, email, password_hash, role, status')
+      .select('id, username, email, password_hash, role, status, trn')
       .eq('username', normalizedUsername)
       .maybeSingle();
 
@@ -115,6 +115,7 @@ exports.login = async (req, res) => {
         email: user.email,
         role: user.role,
         status: user.status,
+        trn: user.trn,
       },
     });
   } catch (error) {
@@ -137,7 +138,7 @@ exports.getMe = async (req, res) => {
   try {
     const { data: user, error } = await supabaseAdmin
       .from('gst_users')
-      .select('id, username, email, role, status')
+      .select('id, username, email, role, status, trn')
       .eq('id', req.user.id)
       .maybeSingle();
 

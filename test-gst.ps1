@@ -1,15 +1,22 @@
 Start-Process node -ArgumentList "backend/server.js" -NoNewWindow
-Start-Sleep -Seconds 3
+Start-Sleep -Seconds 10
 $ErrorActionPreference = 'SilentlyContinue'
-$body = @{ username = "gst1234"; password = "Kich@2026" } | ConvertTo-Json
-Write-Host "--- TEST LOGIN ---"
-$resLogin = Invoke-WebRequest -Uri "http://localhost:5000/api/gst/auth/login" -Method Post -Body $body -ContentType "application/json" -UseBasicParsing
-Write-Host "Login Status: $($resLogin.StatusCode)"
-if ($resLogin.StatusCode -eq $null -or $resLogin.StatusCode -ge 400) {
-    if ($Error.Count -gt 0) {
-        Write-Host "Login Error: $($Error[0].Exception.Message)"
-    }
-} else {
-    Write-Host "Login Response: $($resLogin.Content)"
-}
+
+Write-Host "
+--- TEST GST MISSING ---"
+$resMissing = Invoke-WebRequest -Uri "http://localhost:5000/api/gst/auth/login" -Method Post -Body (@{} | ConvertTo-Json) -ContentType "application/json" -UseBasicParsing
+Write-Host "Missing Status: $($resMissing.StatusCode)"
+
+Write-Host "
+--- TEST GST UNKNOWN ---"
+$bodyUnknown = @{ username = "unknown_user"; password = "password" } | ConvertTo-Json
+$resUnknown = Invoke-WebRequest -Uri "http://localhost:5000/api/gst/auth/login" -Method Post -Body $bodyUnknown -ContentType "application/json" -UseBasicParsing
+Write-Host "Unknown Status: $($resUnknown.StatusCode)"
+
+Write-Host "
+--- TEST CRM LOGIN ---"
+$bodyCRM = @{ email = "kasthuri@gmail.com"; password = "ignored" } | ConvertTo-Json
+$resCRM = Invoke-WebRequest -Uri "http://localhost:5000/api/auth/login" -Method Post -Body $bodyCRM -ContentType "application/json" -UseBasicParsing
+Write-Host "CRM Login Status: $($resCRM.StatusCode)"
+
 Stop-Process -Name node -Force
