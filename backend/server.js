@@ -40,6 +40,17 @@ const allowedList = [
   process.env.FRONTEND_URL
 ];
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedList.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+};
+
 app.use('/api', cors(corsOptions));
 
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
