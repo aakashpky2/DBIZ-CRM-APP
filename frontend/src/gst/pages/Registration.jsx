@@ -237,6 +237,13 @@ const Registration = () => {
                         return;
                     }
 
+                    const crmToken = localStorage.getItem('token');
+                    if (!crmToken) {
+                        toast.error('CRM session missing. Please log in again.');
+                        setLoading(false);
+                        return;
+                    }
+
                     const response = await api.post('/registration/verify-otp', {
                         email: formData.email,
                         emailOtp: otpData.emailOtp,
@@ -248,6 +255,10 @@ const Registration = () => {
                         legalName: formData.legalName,
                         pan: formData.pan,
                         mobile: formData.mobile
+                    }, {
+                        headers: {
+                            Authorization: `Bearer ${crmToken}`
+                        }
                     });
 
                     if (response.data.success) {

@@ -80,20 +80,20 @@ BEGIN
         updated_at
     ) VALUES (
         p_trn,
-        p_payload->>'legal_name',
+        p_payload->>'legalName',
         p_payload->>'pan',
-        p_payload->>'state_name',
+        p_payload->>'stateName',
         p_payload->>'district',
-        p_payload->>'trade_name',
-        p_payload->>'additional_trade',
+        p_payload->>'tradeName',
+        p_payload->>'additionalTrade',
         p_payload->>'constitution',
-        (p_payload->>'casual_taxable')::BOOLEAN,
+        (p_payload->>'casualTaxable')::BOOLEAN,
         (p_payload->>'composition')::BOOLEAN,
-        p_payload->>'rule_14a',
+        p_payload->>'rule14A',
         p_payload->>'reason',
-        (p_payload->>'commencement_date')::DATE,
-        (p_payload->>'liability_date')::DATE,
-        CASE WHEN p_payload ? 'form_tabs_data' THEN p_payload->'form_tabs_data' ELSE '{}'::JSONB END,
+        NULLIF(p_payload->>'commencementDate', '')::DATE,
+        NULLIF(p_payload->>'liabilityDate', '')::DATE,
+        CASE WHEN p_payload ? 'formTabsData' THEN p_payload->'formTabsData' ELSE '{}'::JSONB END,
         NOW()
     )
     ON CONFLICT (trn) DO UPDATE SET

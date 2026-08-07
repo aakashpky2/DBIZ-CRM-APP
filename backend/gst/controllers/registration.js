@@ -61,11 +61,39 @@ exports.verifyOtp = async (req, res, next) => {
         if (emailOtp && mobileOtp && emailOtp.length === 6 && mobileOtp.length === 6) {
             const finalTrn = Math.floor(100000000000 + Math.random() * 900000000000) + 'TRN';
 
-            // We assume req.user is set by auth middleware, if not we need it from the request body or token
-            const userId = req.user ? req.user.id : (req.body.userId || '00000000-0000-0000-0000-000000000000');
+            if (!req.user) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'CRM authentication required'
+                });
+            }
+
+            const userId = req.user.id;
+
+            if (!userId) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'CRM user identity missing'
+                });
+            }
+
+            console.log(
+                '[GST REGISTRATION] authenticated CRM identity',
+                {
+                    userId: req.user?.id || null,
+                    email: req.user?.email || null,
+                    role: req.user?.role || null,
+                }
+            );
+
+            console.log('[GST REGISTRATION] RPC execution', {
+                userId,
+                trn: finalTrn,
+                client: 'supabaseAdmin'
+            });
 
             // Save the registration base data immediately to business_details and deduct 'reg_started' credit
-            const { error: dbError } = await supabase
+            const { error: dbError } = await supabaseAdmin
                 .rpc('atomic_save_business_details_and_burn', {
                     p_user_id: userId,
                     p_trn: finalTrn,
