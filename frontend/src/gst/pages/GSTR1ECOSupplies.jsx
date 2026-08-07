@@ -20,10 +20,36 @@ const GSTR1ECOSupplies = () => {
     const fetchRecords = async () => {
         setIsLoading(true);
         try {
-            const trn = localStorage.getItem('gst_trn') || localStorage.getItem('trn') || 'GUEST-LEARNING-SESSION';
+            const trn = localStorage.getItem('gst_trn');
+            console.log('[GSTR1 ECO] GET TRN resolved as:', trn, 'Source: localStorage.gst_trn');
+            
+            if (!trn) {
+                toast.error('No TRN found. Please log in with a valid GST account.');
+                setRecords([]);
+                return;
+            }
+
             const res = await gstr1Service.getGstr1Records('gstr1_eco', trn);
-            const filtered = res.filter(r => r.type === activeTab);
-            setRecords(filtered);
+            console.log('[GSTR1 ECO] raw service response:', res);
+
+            const fetchedRecords = Array.isArray(res?.data?.data)
+                ? res.data.data
+                : Array.isArray(res?.data)
+                    ? res.data
+                    : [];
+
+            console.log('[GSTR1 ECO] normalized records:', fetchedRecords);
+
+            const filteredRecords = fetchedRecords.filter(record => record.eco_type === activeTab);
+
+            console.log('[GSTR1 ECO] filter audit', {
+                activeTab,
+                fetchedCount: fetchedRecords.length,
+                ecoTypes: fetchedRecords.map(r => r.eco_type),
+                filteredCount: filteredRecords.length
+            });
+
+            setRecords(filteredRecords);
         } catch (error) {
             toast.error("Failed to fetch ECO records");
         } finally {
@@ -94,11 +120,11 @@ const GSTR1ECOSupplies = () => {
                                 <tbody>
                                     {records.map((rec, i) => (
                                         <tr key={i}>
-                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.gstin}</td>
-                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.netValue}</td>
-                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.integratedTax}</td>
-                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.centralTax}</td>
-                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.stateTax}</td>
+                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.eco_gstin}</td>
+                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.net_value}</td>
+                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.integrated_tax}</td>
+                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.central_tax}</td>
+                                            <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.state_tax}</td>
                                             <td style={{ border: '1px solid #ddd', padding: '10px' }}>{rec.cess || 0}</td>
                                         </tr>
                                     ))}

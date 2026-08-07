@@ -126,19 +126,30 @@ exports.verifyOtp = async (req, res, next) => {
             // Attempt to insert into gst_users table (optional, depending on DB rules)
             // Hash a dummy password for the temp TRN username
             const dummyPasswordHash = await bcrypt.hash(Math.random().toString(36).slice(-8), 10);
-            const { error: userError } = await supabaseAdmin
-                .from('gst_users')
-                .insert([{
-                    email: email,
-                    username: finalTrn, // Uses TRN as a temp username for now
-                    password_hash: dummyPasswordHash,
-                    role: 'taxpayer',
-                    status: 'active'
-                }]);
             
-            if (userError) {
-                console.error("Warning: Could not create user record:", userError.message);
-                // We won't block the response for the users table since we care more about the TRN flow.
+            const { data: existingUser } = await supabaseAdmin
+                .from('gst_users')
+                .select('trn')
+                .eq('username', finalTrn)
+                .maybeSingle();
+
+            if (existingUser && existingUser.trn && existingUser.trn !== finalTrn) {
+                console.error("Warning: TRN conflict during temp user creation for", finalTrn);
+            } else {
+                const { error: userError } = await supabaseAdmin
+                    .from('gst_users')
+                    .upsert({
+                        email: email,
+                        username: finalTrn, // Uses TRN as a temp username for now
+                        password_hash: dummyPasswordHash,
+                        role: 'taxpayer',
+                        status: 'active',
+                        trn: finalTrn
+                    }, { onConflict: 'username' });
+                
+                if (userError) {
+                    console.error("Warning: Could not create user record:", userError.message);
+                }
             }
 
             res.status(200).json({
